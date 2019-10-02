@@ -23,7 +23,7 @@ text {
 var width = 1900, height = 1060;
 
 
-d3.json('data/graph-PPGC-UFRGS-2013-2016-periodico-Sucupira.json').then(function(data){
+d3.json('data/graph-PPGC-UFRGS-2013-2016.json').then(function(data){
 	var color = d3.scaleOrdinal(d3.schemeCategory10);
 
 	var simulation = d3.forceSimulation(data.nodes)
