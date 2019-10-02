@@ -1,9 +1,13 @@
 import csv
 import json
 
-with open('../data/autores-PPGC-UFRGS-2013-2016-periodico-Sucupira.csv', newline='') as csvauthors, open('../data/papers-PPGC-UFRGS-2013-2016-periodico-Sucupira.csv', newline='') as csvpapers:
+authorsfilename = input('Inform the authors CSV filename: ')
+papersfilename = input('Inform the papers CSV filename: ')
+outputfilename = input('Inform output json filename: ')
+
+with open(authorsfilename, newline='', encoding='iso8859_2') as csvauthors, open(papersfilename, newline='', encoding='iso8859_2') as csvpapers:
     papers = {}
-    freader = csv.reader(csvpapers, dialect='excel')
+    freader = csv.reader(csvpapers, delimiter=';')
     for row in freader:
         # Data in csvpapers
         # ID_ADD_PRODUCAO_INTELECTUAL [5]
@@ -18,7 +22,7 @@ with open('../data/autores-PPGC-UFRGS-2013-2016-periodico-Sucupira.csv', newline
         papers[paper] = {'area': [row[15]], 'line': row[17], 'authors': []}
 
     authors = {}
-    freader = csv.reader(csvauthors, dialect='excel')
+    freader = csv.reader(csvauthors, delimiter=';')
     for row in freader:
         # Data in csvauthors
         # ID_ADD_PRODUCAO_INTELECTUAL [10]
@@ -63,10 +67,10 @@ with open('../data/autores-PPGC-UFRGS-2013-2016-periodico-Sucupira.csv', newline
                     else:
                         pass # TODO: increment here the 'value' with the publication count
 
-    # TODO: Destacar arestas entre areas diferentes
+    # TODO: Highlight links between areas differently
 
     data = {'nodes': nodes, 'links': links}
-    with open('../data/graph-PPGC-UFRGS-2013-2016-periodico-Sucupira.json', 'w') as f:
+    with open(outputfilename, 'w') as f:
         json.dump(data, f, indent=4)
 
         
