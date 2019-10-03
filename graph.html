@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
-.links line {
+line {
   stroke: #999;
   stroke-opacity: 0.6;
 }
 
-.nodes circle {
+circle {
   stroke: #fff;
   stroke-width: 1.5px;
 }
@@ -21,12 +21,16 @@ text {
 <script>
 //Constants for the SVG
 var width = 1900, height = 1060;
-
+//Global simulation variable
+var simulation;
+//Gloal color scheme for nodes
+var color = d3.scaleOrdinal(d3.schemeCategory10);
+// Global SVG drawing
+var svg;
 
 d3.json('data/graph-PPGC-UFRGS-2013-2016.json').then(function(data){
-	var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-	var simulation = d3.forceSimulation(data.nodes)
+	simulation = d3.forceSimulation(data.nodes)
     	.force("charge", d3.forceManyBody())
 	    .force("link", d3.forceLink().id(function(d) { return d.id; })) 
     	.force("center", d3.forceCenter(width / 2, height / 2));
@@ -34,7 +38,7 @@ d3.json('data/graph-PPGC-UFRGS-2013-2016.json').then(function(data){
 	simulation.force("link").links(data.links);
 
 	//Append a SVG to the body of the html page. Assign this SVG as an object to svg
-	var svg = d3.select("body").append("svg")
+	svg = d3.select("body").append("svg")
 		.attr("width", width)
 	    .attr("height", height);
 
@@ -44,25 +48,30 @@ d3.json('data/graph-PPGC-UFRGS-2013-2016.json').then(function(data){
 
 	//draw lines for the links first
 	var link = g.append("g")
-    	.attr("class", "links")
 	    .selectAll("line")
 	    .data(data.links)
 	    .enter().append("line")
+    	.attr("class", "links")
     	.attr("stroke-width", 2);
 
 	var node = g.append("g")
-    	.attr("class", "nodes")
     	.selectAll("g")
 	    .data(data.nodes)
     	.enter().append("g")
+    	.attr("class", "nodes");
 
 	var circles = node.append("circle")
-    	.attr("r", function(d) { return d.size + 4; })
+    	.attr("r", function(d) { return (d.size/3)+4; })
+    	//.attr("r", function(d) { return Math.log(d.size)+4; })
       	.attr("fill", function(d) { return color(d.group); });
 
 	var labels = node.append("text")
     	.text(function(d) {
-	        return d.id;
+			//if (d.group == 1){
+		        return d.id;
+			//}else{
+			//	return "";
+			//}
     	})
       	.attr('x', 6)
       	.attr('y', 3);
@@ -128,12 +137,76 @@ d3.json('data/graph-PPGC-UFRGS-2013-2016.json').then(function(data){
         	.attr("y1", function(d) { return d.source.y; })
 	        .attr("x2", function(d) { return d.target.x; })
     	    .attr("y2", function(d) { return d.target.y; });
-	}   
+	} 
 });
 
+// All groups enabled at first
+var enabledGroups = [1, 2, 3];
 
+function updateGroups(toogleGroup){
+	indexGroup = enabledGroups.indexOf(toogleGroup);
+	if (indexGroup < 0){ // Not found
+		enabledGroups.push(toogleGroup);
+	}else{
+		enabledGroups.splice(indexGroup, 1);
+	}
+	console.log(enabledGroups);
+	var Snodes = svg.selectAll('.nodes');
+	var Slinks = svg.selectAll('.links');
+
+	var Fnodes = simulation.nodes();
+	var Flinks = simulation.force('link').links();
+
+	var filteredFnodes = Fnodes.filter(function(n){return enabledGroups.includes(n.group);});
+	var filteredFlinks = Flinks.filter(function(l){return enabledGroups.includes(l.source.group) && enabledGroups.includes(l.target.group);});
+
+	simulation.nodes(filteredFnodes);
+	simulation.force('link').links(filteredFlinks);
+
+	function nodeBind(d) { return d.id; }
+
+	Snodes = Snodes.data(filteredFnodes, nodeBind);
+	
+	var node = Snodes.enter().insert("g").attr("class", "nodes");
+
+	var circles = node.append("circle")
+    	.attr("r", function(d) { return (d.size/3) + 4; })
+	    .attr("fill", function(d) { return color(d.group); });
+
+	var labels = node.append("text")
+    	.text(function(d) {
+        	//if (d.group == 1){
+            	return d.id;
+	        //}else{
+    	    //    return "";
+        	//}
+    	})
+	    .attr('x', 6)
+    	.attr('y', 3);
+
+	    node.append("title")
+    	    .text(function(d) { return d.id; });
+	
+	Snodes.exit().remove();
+
+	function linkBind(d) { return d.source.id+d.target.id; }
+
+	Slinks = Slinks.data(filteredFlinks, linkBind);
+	
+	Slinks.enter().insert("line")
+	    	.attr("class", "links")
+    		.attr("stroke-width", 2);
+	
+	Slinks.exit().remove();
+	
+	simulation.alphaTarget(0.3).restart();
+}
 </script>
 <body>
-
+<p>
+	<button onclick="updateGroups(1)">Professors</button>
+	<button onclick="updateGroups(2)">Students</button>
+	<button onclick="updateGroups(3)">External</button>
+</p>
 </body>
 </html>
