@@ -26,6 +26,7 @@ try:
         outlines = 0
         with open(outfilename, 'w', newline='', encoding='iso8859_2') as csvoutfile:
             fwriter = csv.writer(csvoutfile, delimiter=';', quoting=csv.QUOTE_MINIMAL)
+            fwriter.writerow(headers) # Write headers into the destination file
             for row in freader:
                 fullmatch = True
                 for pair in pairs:
