@@ -8,7 +8,7 @@ line {
 
 circle {
   stroke: #fff;
-  stroke-width: 1.5px;
+  stroke-width: 1px;
 }
 
 text {
@@ -37,16 +37,19 @@ console.log(dataset);
 d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
 
 	simulation = d3.forceSimulation(data.nodes)
+	    .force("link", d3.forceLink(data.links).id(function(d) { return d.id; })) 
     	.force("charge", d3.forceManyBody())
-	    .force("link", d3.forceLink().id(function(d) { return d.id; })) 
-    	.force("center", d3.forceCenter(width / 2, height / 2));
+        .force("x", d3.forceX())
+        .force("y", d3.forceY());
+    	//.force("center", d3.forceCenter(width / 2, height / 2));
 
-	simulation.force("link").links(data.links);
+	//simulation.force("link").links(data.links);
 
 	//Append a SVG to the body of the html page. Assign this SVG as an object to svg
 	svg = d3.select("body").append("svg")
-		.attr("width", width)
-	    .attr("height", height);
+        .attr("viewBox", [-width / 2, -height / 2, width, height]);
+		//.attr("width", width)
+	    //.attr("height", height);
 
 	//add encompassing group for the zoom 
 	var g = svg.append("g")
@@ -58,7 +61,7 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
 	    .data(data.links)
 	    .enter().append("line")
     	.attr("class", "links")
-    	.attr("stroke-width", 2);
+    	.attr("stroke-width", 1);
 
 	var node = g.append("g")
     	.selectAll("g")
@@ -173,25 +176,25 @@ function updateGroups(toogleGroup){
 
 	Snodes = Snodes.data(filteredFnodes, nodeBind);
 	
-	var node = Snodes.enter().insert("g").attr("class", "nodes");
+	//var node = Snodes.enter().insert("g").attr("class", "nodes");
 
-	var circles = node.append("circle")
-    	.attr("r", function(d) { return (d.size/3) + 4; })
-	    .attr("fill", function(d) { return color(d.group); });
+	//var circles = node.append("circle")
+    //	.attr("r", function(d) { return (d.size/3) + 4; })
+	//    .attr("fill", function(d) { return color(d.group); });
 
-	var labels = node.append("text")
-    	.text(function(d) {
-        	//if (d.group == 1){
-            	return d.id;
-	        //}else{
-    	    //    return "";
-        	//}
-    	})
-	    .attr('x', 6)
-    	.attr('y', 3);
+	//var labels = node.append("text")
+    //	.text(function(d) {
+    //   	//if (d.group == 1){
+    //        	return d.id;
+	//        //}else{
+    //	    //    return "";
+    //    	//}
+    //	})
+	//    .attr('x', 6)
+    //	.attr('y', 3);
 
-	    node.append("title")
-    	    .text(function(d) { return d.id; });
+	//    node.append("title")
+    //	    .text(function(d) { return d.id; });
 	
 	Snodes.exit().remove();
 
@@ -199,9 +202,9 @@ function updateGroups(toogleGroup){
 
 	Slinks = Slinks.data(filteredFlinks, linkBind);
 	
-	Slinks.enter().insert("line")
-	    	.attr("class", "links")
-    		.attr("stroke-width", 2);
+	//Slinks.enter().insert("line")
+	//    	.attr("class", "links")
+    //		.attr("stroke-width", 2);
 	
 	Slinks.exit().remove();
 	
