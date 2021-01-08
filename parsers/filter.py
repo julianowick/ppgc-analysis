@@ -19,13 +19,13 @@ try:
 
             value = input('Which value would you like to use for your filter: ')
             pairs.append({'key': headers.index(key), 'value': value})
-            keepgoing = input('Do you need to include one more filter? (y/n)')
+            keepgoing = input('Do you need to include one more filter (y/n)? ')
 
         # Find in the CSV file the rows maching all the key/value pairs
         outfilename = filename[0:-4] + '-filtered.csv'
         outlines = 0
-        with open(outfilename, 'w', newline='', encoding='iso8859_2') as csvoutfile:
-            fwriter = csv.writer(csvoutfile, delimiter=';', quoting=csv.QUOTE_MINIMAL)
+        with open(outfilename, 'w', newline='', encoding='utf8') as csvoutfile:
+            fwriter = csv.writer(csvoutfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
             fwriter.writerow(headers) # Write headers into the destination file
             for row in freader:
                 fullmatch = True
