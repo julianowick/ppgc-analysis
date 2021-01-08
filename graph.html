@@ -6,6 +6,12 @@ line {
   stroke-opacity: 0.6;
 }
 
+.interarea {
+  stroke: #000;
+  stroke-opacity: 0.8;
+  stroke-width: 2px;
+}
+
 circle {
   stroke: #fff;
   stroke-width: 1px;
@@ -30,9 +36,8 @@ var svg;
 //Dataset configuration from UFL
 var dataset = window.location.search.slice(1);
 if(dataset == ""){
-    dataset = "2013-2016";
+    dataset = "2017-2020";
 }
-console.log(dataset);
 
 d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
 
@@ -60,8 +65,9 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
 	    .selectAll("line")
 	    .data(data.links)
 	    .enter().append("line")
-    	.attr("class", "links")
-    	.attr("stroke-width", 1);
+    	//.attr("class", "links")
+        .attr("class", function(d) { if(d.interarea) { return "links interarea"; }else{ return "links"; }});
+    	//.attr("stroke-width", 1);
 
 	var node = g.append("g")
     	.selectAll("g")
@@ -76,11 +82,11 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
 
 	var labels = node.append("text")
     	.text(function(d) {
-			//if (d.group == 1){
+			if (d.group == 1){
 		        return d.id;
-			//}else{
-			//	return "";
-			//}
+			}else{
+				return "";
+			}
     	})
       	.attr('x', 6)
       	.attr('y', 3);
@@ -219,6 +225,7 @@ function updateGroups(toogleGroup){
 	<button onclick="updateGroups(3)">External</button>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     dataset: 
+    <a href="?2017-2020">2017-2020</a> |
     <a href="?2013-2016">2013-2016</a> |
     <a href="?2016">2016</a> |
     <a href="?2015">2015</a> |
