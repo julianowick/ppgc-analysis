@@ -1,0 +1,49 @@
+line {
+    stroke: #999;
+    stroke-opacity: 0.5;
+}
+
+.interarea {
+    stroke-opacity: 0.5;
+}
+
+circle {
+    stroke: #fff;
+    stroke-width: 1px;
+}
+
+text {
+    font-family: "Helvetica";
+    font-size: 7px;
+    fill: #fff;
+}
+body {
+    background: #000;
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica";
+    color: #fff;
+    font-size: 12px;
+}
+h1 {
+    font-size: 20px;
+}
+h2 {
+    font-size: 16px;
+}
+.conf {
+    background: #444;
+    display: block;
+    padding: 5px;
+}
+.container {
+}
+.info {
+    background: #444;
+    float: left;
+    width: 20%;
+}
+.graph {
+    float: left;
+    width: 80%;
+}

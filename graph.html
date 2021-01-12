@@ -1,236 +1,55 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-line {
-  stroke: #999;
-  stroke-opacity: 0.6;
-}
-
-.interarea {
-  stroke: #000;
-  stroke-opacity: 0.8;
-  stroke-width: 2px;
-}
-
-circle {
-  stroke: #fff;
-  stroke-width: 1px;
-}
-
-text {
-  font-family: sans-serif;
-  font-size: 7px;
-}
-
-</style>
-<script src="https://d3js.org/d3.v5.min.js"></script>
-<script>
-//Constants for the SVG
-var width = 1900, height = 1060;
-//Global simulation variable
-var simulation;
-//Gloal color scheme for nodes
-var color = d3.scaleOrdinal(d3.schemeCategory10);
-//Global SVG drawing
-var svg;
-//Dataset configuration from UFL
-var dataset = window.location.search.slice(1);
-if(dataset == ""){
-    dataset = "2017-2020";
-}
-
-d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
-
-	simulation = d3.forceSimulation(data.nodes)
-	    .force("link", d3.forceLink(data.links).id(function(d) { return d.id; })) 
-    	.force("charge", d3.forceManyBody())
-        .force("x", d3.forceX())
-        .force("y", d3.forceY());
-    	//.force("center", d3.forceCenter(width / 2, height / 2));
-
-	//simulation.force("link").links(data.links);
-
-	//Append a SVG to the body of the html page. Assign this SVG as an object to svg
-	svg = d3.select("body").append("svg")
-        .attr("viewBox", [-width / 2, -height / 2, width, height]);
-		//.attr("width", width)
-	    //.attr("height", height);
-
-	//add encompassing group for the zoom 
-	var g = svg.append("g")
-    	.attr("class", "everything");
-
-	//draw lines for the links first
-	var link = g.append("g")
-	    .selectAll("line")
-	    .data(data.links)
-	    .enter().append("line")
-    	//.attr("class", "links")
-        .attr("class", function(d) { if(d.interarea) { return "links interarea"; }else{ return "links"; }});
-    	//.attr("stroke-width", 1);
-
-	var node = g.append("g")
-    	.selectAll("g")
-	    .data(data.nodes)
-    	.enter().append("g")
-    	.attr("class", "nodes");
-
-	var circles = node.append("circle")
-    	.attr("r", function(d) { return (d.size/3)+4; })
-    	//.attr("r", function(d) { return Math.log(d.size)+4; })
-      	.attr("fill", function(d) { return color(d.group); });
-
-	var labels = node.append("text")
-    	.text(function(d) {
-			if (d.group == 1){
-		        return d.id;
-			}else{
-				return "";
-			}
-    	})
-      	.attr('x', 6)
-      	.attr('y', 3);
-
-	  node.append("title")
-	      .text(function(d) { return d.id; });
-
-	//add drag capabilities  
-	var drag_handler = d3.drag()
-		.on("start", drag_start)
-		.on("drag", drag_drag)
-		.on("end", drag_end);
-
-	drag_handler(node);
-
-	//add zoom capabilities 
-	var zoom_handler = d3.zoom()
-    	.on("zoom", zoom_actions);
-
-	zoom_handler(svg);
-
-	//Drag functions 
-	//d is the node 
-	function drag_start(d) {
-		if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-		d.fx = d.x;
-		d.fy = d.y;
-	}
-
-	//make sure you can't drag the circle outside the box
-	function drag_drag(d) {
-		d.fx = d3.event.x;
-		d.fy = d3.event.y;
-	}
-
-	function drag_end(d) {
-		if (!d3.event.active) simulation.alphaTarget(0);
-		d.fx = null;
-		d.fy = null;
-	}
-
-	//Zoom functions 
-	function zoom_actions(){
-    	g.attr("transform", d3.event.transform)
-	}
-
-	simulation.on("tick", tickActions);
-
-	function tickActions(){
-	    //update circle positions each tick of the simulation 
-    	node
-			.attr("transform", function(d) {
-          		return "translate(" + d.x + "," + d.y + ")";
-	        })
-        	//.attr("cx", function(d) { return d.x; })
-	        //.attr("cy", function(d) { return d.y; });
-        
-    	//update link positions 
-	    //simply tells one end of the line to follow one node around
-    	//and the other end of the line to follow the other node around
-	    link
-    	    .attr("x1", function(d) { return d.source.x; })
-        	.attr("y1", function(d) { return d.source.y; })
-	        .attr("x2", function(d) { return d.target.x; })
-    	    .attr("y2", function(d) { return d.target.y; });
-	} 
-});
-
-// All groups enabled at first
-var enabledGroups = [1, 2, 3];
-
-function updateGroups(toogleGroup){
-	indexGroup = enabledGroups.indexOf(toogleGroup);
-	if (indexGroup < 0){ // Not found
-		enabledGroups.push(toogleGroup);
-	}else{
-		enabledGroups.splice(indexGroup, 1);
-	}
-	console.log(enabledGroups);
-	var Snodes = svg.selectAll('.nodes');
-	var Slinks = svg.selectAll('.links');
-
-	var Fnodes = simulation.nodes();
-	var Flinks = simulation.force('link').links();
-
-	var filteredFnodes = Fnodes.filter(function(n){return enabledGroups.includes(n.group);});
-	var filteredFlinks = Flinks.filter(function(l){return enabledGroups.includes(l.source.group) && enabledGroups.includes(l.target.group);});
-
-	simulation.nodes(filteredFnodes);
-	simulation.force('link').links(filteredFlinks);
-
-	function nodeBind(d) { return d.id; }
-
-	Snodes = Snodes.data(filteredFnodes, nodeBind);
-	
-	//var node = Snodes.enter().insert("g").attr("class", "nodes");
-
-	//var circles = node.append("circle")
-    //	.attr("r", function(d) { return (d.size/3) + 4; })
-	//    .attr("fill", function(d) { return color(d.group); });
-
-	//var labels = node.append("text")
-    //	.text(function(d) {
-    //   	//if (d.group == 1){
-    //        	return d.id;
-	//        //}else{
-    //	    //    return "";
-    //    	//}
-    //	})
-	//    .attr('x', 6)
-    //	.attr('y', 3);
-
-	//    node.append("title")
-    //	    .text(function(d) { return d.id; });
-	
-	Snodes.exit().remove();
-
-	function linkBind(d) { return d.source.id+d.target.id; }
-
-	Slinks = Slinks.data(filteredFlinks, linkBind);
-	
-	//Slinks.enter().insert("line")
-	//    	.attr("class", "links")
-    //		.attr("stroke-width", 2);
-	
-	Slinks.exit().remove();
-	
-	simulation.alphaTarget(0.3).restart();
-}
-</script>
-<body>
-<p>
-    filter: 
-	<button onclick="updateGroups(1)">Professors</button>
-	<button onclick="updateGroups(2)">Students</button>
-	<button onclick="updateGroups(3)">External</button>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    dataset: 
-    <a href="?2017-2020">2017-2020</a> |
-    <a href="?2013-2016">2013-2016</a> |
-    <a href="?2016">2016</a> |
-    <a href="?2015">2015</a> |
-    <a href="?2014">2014</a> |
-    <a href="?2013">2013</a> 
-</p>
-</body>
+<html>
+    <meta charset="utf-8">
+    <head>
+        <title>PPGC Coauthorship Graph</title>
+        <link rel="stylesheet" href="graph.css">
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="graph.js"></script>
+    </head>
+    <body>
+        <div class="conf">
+            <form action="?" method="GET">
+                Show nodes: 
+                <input type="checkbox" name="professors" value="1" checked>Professors</input>
+                <input type="checkbox" name="students" value="1" checked>Students/Alumni/Pos-doc</input>
+                <input type="checkbox" name="external" value="1" checked>External/Others</input>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Dataset: 
+                <select name="dataset">
+                    <option value="2017-2020">2017-2020</option>
+                    <option value="2013-2016">2013-2016</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option> 
+                </select>
+                <input type="submit" value="Go"/>
+            </form>
+        </div>
+        <div class="container">
+            <div class="info" id="info">
+                <h1>Graph Information</h1>
+                <table>
+                    <tr>
+                        <th>Nodes:<th>
+                        <td id="info-nodes"></td>
+                    </tr>
+                    <tr>
+                        <th>Edges:<th>
+                        <td id="info-links"></td>
+                    </tr>
+                </table>
+                <hr/>
+                <h1>Node Information</h1>
+                <div id="node-info"><p>Select a Node</p></div>
+                <hr/>            
+                <h1>Legend</h1>
+                <p>Colors (Area)</p>
+                <div id="legend-colors"></div>
+                <p>Size (# papers)</p>
+                <div id="legend-sizes"></div>
+            </div>
+            <div class="graph" id="graph"></div>
+    </body>
 </html>
