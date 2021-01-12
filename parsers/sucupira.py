@@ -1,6 +1,7 @@
 import csv
 import json
 import operator
+from unidecode import unidecode
 
 authorsfilename = input('Inform the authors CSV filename: ')
 papersfilename = input('Inform the papers CSV filename: ')
@@ -8,6 +9,8 @@ outputfilename = input('Inform output json filename: ')
 
 with open(authorsfilename, newline='', encoding='utf8') as csvauthors, open(papersfilename, newline='', encoding='utf8') as csvpapers:
     papers = {}
+    all_areas = []
+    all_lines = []
     freader = csv.reader(csvpapers, delimiter=',')
     for row in freader:
         # Skip headers
@@ -26,14 +29,21 @@ with open(authorsfilename, newline='', encoding='utf8') as csvauthors, open(pape
 
         papers[row[id_prod]] = {
             'year': row[year],
-            'area': row[nm_area],
-            'line': line,
-            'type': row[nm_type],
+            'area': unidecode(row[nm_area]),
+            'line': unidecode(line),
+            'type': unidecode(row[nm_type]),
             'authors': []
         }
+        # Create a list of unique areas
+        if papers[row[id_prod]]['area'] not in all_areas:
+            all_areas.append(papers[row[id_prod]]['area'])
+        # Create a list of unique lines
+        if papers[row[id_prod]]['line'] not in all_lines:
+            all_lines.append(papers[row[id_prod]]['line'])
 
     authors = {}
     freader = csv.reader(csvauthors, delimiter=',')
+    author_id = 1
     for row in freader:
         # Skip headers
         if row[0] == 'AN_BASE':
@@ -42,7 +52,7 @@ with open(authorsfilename, newline='', encoding='utf8') as csvauthors, open(pape
             tp_author = row.index('TP_AUTOR') # professor, student, external
             continue
         
-        author = row[nm_author]
+        author = unidecode(row[nm_author])
         paper = row[id_prod]
         if author in authors: # existing author
             # add paper to author
@@ -62,17 +72,19 @@ with open(authorsfilename, newline='', encoding='utf8') as csvauthors, open(pape
             # add type to author if doesn't exist
             if row[tp_author] != '-': # avoid adding "empty" types
                 if row[tp_author] not in authors[author]['types']:
-                    authors[author]['types'][row[tp_author]] = 1 # add type of author
-                else:
-                    authors[author]['types'][row[tp_author]] += 1 # increment type count
+                    authors[author]['types'][row[tp_author]] = papers[paper]['year'] # add type of author
+                elif papers[paper]['year'] > authors[author]['types'][row[tp_author]]: 
+                    authors[author]['types'][row[tp_author]] = papers[paper]['year'] # update year of apearance
 
         else: # new author found
             authors[author] = {
+                'id': author_id,
                 'papers': [paper], 
-                'types': {row[tp_author]: 1}, # types counter
+                'types': {unidecode(row[tp_author]): papers[paper]['year']}, # year of apearance of this type
                 'areas': {papers[paper]['area']: 1}, # areas counter
                 'lines': {papers[paper]['line']: 1} # lines counter
             }
+            author_id += 1
         
         papers[paper]['authors'].append(author)
 
@@ -80,7 +92,7 @@ with open(authorsfilename, newline='', encoding='utf8') as csvauthors, open(pape
     links = [] # Actual links of the graph based on the co-authors list
     nodes = [] # Each author is a node
     for author in authors:
-        # Find main type
+        # Find main type (most recent)
         authors[author]['type'] = max(authors[author]['types'], key=authors[author]['types'].get)
 
         # Groups: professor [1], student [2], alumni [3], posdoc [4], external/other [5]
@@ -89,25 +101,35 @@ with open(authorsfilename, newline='', encoding='utf8') as csvauthors, open(pape
         elif authors[author]['type'] == 'DISCENTE':
             group = 2
         elif authors[author]['type'] == 'EGRESSO':
-            group = 3
-        elif authors[author]['type'] == 'PÓS-DOC':
-            group = 4
+            group = 2
+        elif authors[author]['type'] == 'POS-DOC':
+            group = 2
         else:
-            group = 5
+            group = 3
 
         authors[author]['group'] = group
-        authors[author]['area'] = max(authors[author]['areas'], key=authors[author]['areas'].get), # main area
-        authors[author]['line'] = max(authors[author]['lines'], key=authors[author]['lines'].get), # main area
+        authors[author]['area'] = max(authors[author]['areas'], key=authors[author]['areas'].get) # main area
+        authors[author]['line'] = max(authors[author]['lines'], key=authors[author]['lines'].get) # main area
         size = len(authors[author]['papers'])
+        # Convert areas and lines from dict to list of dicts
+        node_areas = []
+        for area in authors[author]['areas']:
+            node_areas.append({'area_name': area, 'area_id': all_areas.index(area) + 1, 'count': authors[author]['areas'][area]})
+        node_lines = []
+        for line in authors[author]['lines']:
+            node_lines.append({'line_name': line, 'line_id': all_lines.index(line) + 1, 'count': authors[author]['lines'][line]})
         node = {
-            'id': author,
-            'group': group,
+            'id': authors[author]['id'],
+            'label': author,
+            'group_id': group,
             'group_name': authors[author]['type'],
             'size': size,
-            'area': authors[author]['area'],
-            'areas': authors[author]['areas'],
-            'line': authors[author]['line'],
-            'lines': authors[author]['lines']
+            'area_id': all_areas.index(authors[author]['area']) + 1,
+            'area_name': authors[author]['area'],
+            'areas': node_areas,
+            'line_id': all_lines.index(authors[author]['line']) + 1,
+            'line_name': authors[author]['line'],
+            'lines': node_lines
         }
         # Add node with attached information to the nodes list
         nodes.append(node)
@@ -118,7 +140,13 @@ with open(authorsfilename, newline='', encoding='utf8') as csvauthors, open(pape
                 if coauthor != author: # Avoid adding the own author to the co-author list
                     pair = str(sorted({author, coauthor})) # Always in aphabetical order
                     if pair not in coauthors: # Avoid duplicating co-author pairs
-                        link = {'source': author, 'target': coauthor, 'value': 1}
+                        link = {
+                            'source': authors[author]['id'],
+                            'source_label': author, 
+                            'target': authors[coauthor]['id'], 
+                            'target_label': coauthor, 
+                            'value': 1
+                        }
                         coauthors[pair] = link # Record the link association
                         links.append(link)
                     else:
@@ -127,12 +155,12 @@ with open(authorsfilename, newline='', encoding='utf8') as csvauthors, open(pape
 
     # Highlight links between areas differently
     for i in range(len(links)):
-        if authors[links[i]['source']]['area'] != "" and authors[links[i]['target']]['area'] != "" and authors[links[i]['source']]['area'] != authors[links[i]['target']]['area']:
+        if authors[links[i]['source_label']]['area'] != "" and authors[links[i]['target_label']]['area'] != "" and authors[links[i]['source_label']]['area'] != authors[links[i]['target_label']]['area']:
             links[i]['interarea'] = True
         else:
             links[i]['interarea'] = False
             
-        if authors[links[i]['source']]['line'] != "" and authors[links[i]['target']]['line'] != "" and authors[links[i]['source']]['line'] != authors[links[i]['target']]['line']:
+        if authors[links[i]['source_label']]['line'] != "" and authors[links[i]['target_label']]['line'] != "" and authors[links[i]['source_label']]['line'] != authors[links[i]['target_label']]['line']:
             links[i]['interline'] = True
         else:
             links[i]['interline'] = False
