@@ -2,16 +2,17 @@ line {
     stroke: #999;
     stroke-opacity: 0.5;
 }
-
 .interarea {
     stroke-opacity: 0.5;
 }
-
+rect {
+    stroke: #fff;
+    stroke-width: 1px;
+}
 circle {
     stroke: #fff;
     stroke-width: 1px;
 }
-
 text {
     font-family: "Helvetica";
     font-size: 7px;
@@ -32,14 +33,14 @@ h2 {
     font-size: 16px;
 }
 .conf {
-    background: #444;
+    background: #034078;
     display: block;
     padding: 5px;
 }
 .container {
 }
 .info {
-    background: #444;
+    background: #034078;
     float: left;
     width: 20%;
 }

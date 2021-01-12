@@ -48,9 +48,31 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
     	.enter().append("g")
     	.attr("class", "nodes");
 
-	var circles = node.append("circle").on("click", function(d){fill_node_info(d)})
+    // professors (group_id == 1) are circles
+    node.filter(function(d){return d.group_id == 1})
+        .append("circle")
+        .on("click", function(d){fill_node_info(d)})
     	.attr("r", function(d) { return node_size(d.size); })
       	.attr("fill", function(d) { return color(d.area_id); });
+
+    // students (group_id == 2) are squares
+    node.filter(function(d){return d.group_id == 2})
+        .append("rect")
+        .on("click", function(d){fill_node_info(d)})
+    	.attr("width", function(d) { return node_size(d.size)*2; })
+    	.attr("height", function(d) { return node_size(d.size)*2; })
+      	.attr("fill", function(d) { return color(d.area_id); });
+
+    // others (group_id == 3) are rounded squares
+    node.filter(function(d){return d.group_id == 3})
+        .append("rect")
+        .on("click", function(d){fill_node_info(d)})
+    	.attr("width", function(d) { return node_size(d.size)*2; })
+    	.attr("height", function(d) { return node_size(d.size)*2; })
+    	.attr("rx", function(d) { return node_size(d.size)/2; })
+    	.attr("ry", function(d) { return node_size(d.size)/2; })
+      	.attr("fill", function(d) { return color(d.area_id); });
+    
 
 	var labels = node.append("text")
     	.text(function(d) {
@@ -108,13 +130,18 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
 	simulation.on("tick", tickActions);
 
 	function tickActions(){
-	    //update circle positions each tick of the simulation 
-    	node
+	    // update circle positions each tick of the simulation 
+        // professors (group_id == 1) are circles
+        node.filter(function(d){return d.group_id == 1})
 			.attr("transform", function(d) {
           		return "translate(" + d.x + "," + d.y + ")";
 	        })
-        	//.attr("cx", function(d) { return d.x; })
-	        //.attr("cy", function(d) { return d.y; });
+	    // update circle positions each tick of the simulation 
+        // others (group_id != 1) are squares
+        node.filter(function(d){return d.group_id != 1})
+			.attr("transform", function(d) {
+          		return "translate(" + (d.x - node_size(d.size)) + "," + (d.y - node_size(d.size)) + ")";
+	        })
         
     	//update link positions 
 	    //simply tells one end of the line to follow one node around
@@ -129,7 +156,7 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
 });
 
 function node_size(n){
-    return (n/2)+4;
+    return (n/3)+4;
 }
 
 function fill_node_info(node){
@@ -188,9 +215,9 @@ function fill_legend(){
             .text(all_area_name[i]);
     }
     // Example sizes
-    var example_sizes = [20, 10, 5, 1];
+    var example_sizes = [30, 15, 5, 1];
     var sizes_svg = d3.select("#legend-sizes").append("svg")
-        .attr("height", 150)
+        .attr("height", 90)
         .attr("width", 250);
     for (var i = 0; i < example_sizes.length; i++){
         var g = sizes_svg.append("g");
@@ -205,6 +232,44 @@ function fill_legend(){
                 .attr("style", "font-size: 12px")
                 .text(example_sizes[i] + " papers");
     }
+    var shapes_svg = d3.select("#legend-shapes").append("svg")
+        .attr("height", 150)
+        .attr("width", 250);
+    var g = shapes_svg.append("g");
+        g.append("circle")
+            .attr("r", 10)
+            .attr("cx", 18)
+            .attr("cy", 12)
+            .attr("fill", "#999");
+        g.append("text")
+            .attr("x", 40)
+            .attr("y", 17)
+            .attr("style", "font-size: 12px")
+            .text("Professors");
+        g.append("rect")
+            .attr("x", 9)
+            .attr("y", 30)
+            .attr("width", 20)
+            .attr("height", 20)
+            .attr("fill", "#999");
+        g.append("text")
+            .attr("x", 40)
+            .attr("y", 45)
+            .attr("style", "font-size: 12px")
+            .text("Students/Alumni/Pos-doc");
+        g.append("rect")
+            .attr("x", 9)
+            .attr("y", 60)
+            .attr("rx", 3)
+            .attr("ry", 3)
+            .attr("width", 20)
+            .attr("height", 20)
+            .attr("fill", "#999");
+        g.append("text")
+            .attr("x", 40)
+            .attr("y", 75)
+            .attr("style", "font-size: 12px")
+            .text("External/Others");
 
 }
 
