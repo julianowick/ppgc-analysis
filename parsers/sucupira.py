@@ -26,6 +26,8 @@ with open(authorsfilename, newline='', encoding='utf8') as csvauthors, open(pape
         # Some line names start with LINHA
         if row[nm_line].startswith('LINHA '):
             line = row[nm_line][6:]
+        else:
+            line = row[nm_line]
 
         papers[row[id_prod]] = {
             'year': row[year],
