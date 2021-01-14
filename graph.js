@@ -54,6 +54,7 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
 	    .selectAll("line")
 	    .data(simulation.force("link").links())
 	    .enter().append("line")
+        .on("click", function(d, i, v){ select_edge(d, i, v); })
     	//.attr("class", "links")
         .attr("class", function(d) { if(d.interarea) { return "links interarea"; }else{ return "links"; }})
     	.attr("stroke-width", function(d) { return d.value/2 }); // TODO: values are doubled, need to fix in dataset
@@ -67,32 +68,21 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
     // professors (group_id == 1) are circles
     node.filter(function(d){return d.group_id == 1})
         .append("circle")
-        .on("click", function(d){fill_node_info(d)})
+        .on("click", function(d, i, v){ select_node(d, i, v); })
     	.attr("r", function(d) { return node_size(d.size); })
       	.attr("fill", function(d) { return color(d.area_id); });
 
     // students (group_id == 2) are squares
     node.filter(function(d){return d.group_id == 2})
         .append("rect")
-        .on("click", function(d){fill_node_info(d)})
+        .on("click", function(d, i, v){ select_node(d, i, v); })
     	.attr("width", function(d) { return node_size(d.size)*2; })
     	.attr("height", function(d) { return node_size(d.size)*2; })
       	.attr("fill", function(d) { return color(d.area_id); });
-    /*
-    // others (group_id == 3) are rounded squares
-    node.filter(function(d){return d.group_id == 3})
-        .append("rect")
-        .on("click", function(d){fill_node_info(d)})
-    	.attr("width", function(d) { return node_size(d.size)*2; })
-    	.attr("height", function(d) { return node_size(d.size)*2; })
-    	.attr("rx", function(d) { return node_size(d.size)/2; })
-    	.attr("ry", function(d) { return node_size(d.size)/2; })
-      	.attr("fill", function(d) { return color(d.area_id); });
-    */
     // others (group_id == 3) are rounded squares
     node.filter(function(d){return d.group_id == 3})
         .append("polygon")
-        .on("click", function(d){fill_node_info(d)})
+        .on("click", function(d, i, v){ select_node(d, i, v); })
     	.attr("points", function(d) { side = node_size(d.size)*2; return "0," + side + " " + side + "," + side + " " + side/2 + ",0" ; })
       	.attr("fill", function(d) { return color(d.area_id); });
     
@@ -183,6 +173,22 @@ function node_size(n){
     return (n/3)+4;
 }
 
+function unselect_nodes(){
+    d3.selectAll("line").property("style", "stroke-opacity: 0.3");
+    d3.selectAll("circle, rect, polygon").property("style", "stroke-width: 1px");
+}
+
+function select_node(node, index, shapes){
+    // Unselect all previously selected nodes
+    unselect_nodes();
+    // Increase strock width of shape
+    shapes[index].style.strokeWidth = "2px";
+    // Increase opacity of all incoming/outgoing links
+    d3.selectAll("line").filter(function(l){ return l.source.id == node.id || l.target.id == node.id; }).property("style", "stroke-opacity: 1");
+    // TODO: display labels for all co-authors
+    fill_node_info(node);
+}
+
 function fill_node_info(node){
     var node_info = d3.select("#node-info")
     node_info.text(node.label + " (" + node.group_name + ")");
@@ -197,7 +203,25 @@ function fill_node_info(node){
     for (var i = 0; i < node.lines.length; i++){
         lines_list.append("li").text(node.lines[i].line_name + " (" + node.lines[i].count + ")");
     }
-    //console.log(node);
+}
+
+function select_edge(edge, index, shapes){
+    // Unselect all previously selected nodes
+    unselect_nodes();
+    // Increase strock width of shape
+    shapes[index].style.strokeOpacity = "1";
+    // Increase opacity of all incoming/outgoing links
+    d3.selectAll("circle, rect, polygon").filter(function(n){ if (n === undefined) return false; return n.id == edge.source.id || n.id == edge.target.id; }).property("style", "stroke-width: 2px");
+    // TODO: display labels for source and target
+    fill_edge_info(edge);
+}
+
+function fill_edge_info(edge){
+    var edge_info = d3.select("#edge-info")
+    edge_info.text(edge.source_label + " <-> " + edge.target_label);
+    edge_info.append("p").text("Co-authored papers: " + edge.value/2); // TODO: values are doubled, need to fix in dataset
+    edge_info.append("p").text("Between research areas: " + edge.interarea);
+    edge_info.append("p").text("Between research lines: " + edge.interline);
 }
 
 // Fill legend wit info
@@ -257,7 +281,7 @@ function fill_legend(){
                 .text(example_sizes[i] + " papers");
     }
     var shapes_svg = d3.select("#legend-shapes").append("svg")
-        .attr("height", 150)
+        .attr("height", 100)
         .attr("width", 250);
     var g = shapes_svg.append("g");
         g.append("circle")
@@ -309,7 +333,6 @@ function updateGroups(toogleGroup){
 	}else{
 		enabledGroups.splice(indexGroup, 1);
 	}
-	console.log(enabledGroups);
 	var Snodes = svg.selectAll('.nodes');
 	var Slinks = svg.selectAll('.links');
 

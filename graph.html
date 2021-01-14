@@ -2,7 +2,7 @@
 <html>
     <meta charset="utf-8">
     <head>
-        <title>PPGC Coauthorship Graph</title>
+        <title>PPGC Co-authorship Graph</title>
         <link rel="stylesheet" href="graph.css">
         <script src="https://d3js.org/d3.v5.min.js"></script>
         <script src="graph.js"></script>
@@ -28,17 +28,20 @@
                 <h1>Graph Information</h1>
                 <table>
                     <tr>
-                        <th>Nodes:<th>
+                        <th align="left">Nodes (authors):<th>
                         <td id="info-nodes"></td>
                     </tr>
                     <tr>
-                        <th>Edges:<th>
+                        <th align="left">Edges (co-authorhip relations):<th>
                         <td id="info-links"></td>
                     </tr>
                 </table>
                 <hr/>
                 <h1>Node Information</h1>
                 <div id="node-info"><p>Select a Node</p></div>
+                <hr/>            
+                <h1>Edge Information</h1>
+                <div id="edge-info"><p>Select an Edge</p></div>
                 <hr/>            
                 <h1>Legend</h1>
                 <p>Color (research area)</p>

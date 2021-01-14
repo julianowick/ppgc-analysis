@@ -1,9 +1,9 @@
 line {
     stroke: #999;
-    stroke-opacity: 0.5;
+    stroke-opacity: 0.3;
 }
 .interarea {
-    stroke-opacity: 0.5;
+    stroke-opacity: 0.3;
 }
 polygon, rect, circle {
     stroke: #fff;
