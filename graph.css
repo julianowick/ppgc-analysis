@@ -5,11 +5,7 @@ line {
 .interarea {
     stroke-opacity: 0.5;
 }
-rect {
-    stroke: #fff;
-    stroke-width: 1px;
-}
-circle {
+polygon, rect, circle {
     stroke: #fff;
     stroke-width: 1px;
 }

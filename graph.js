@@ -6,22 +6,38 @@ var simulation;
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 //Global SVG drawing
 var svg;
-//Dataset configuration from UFL
-var dataset = window.location.search.slice(1);
-if(dataset == ""){
+//Configuration from URL
+var urlsearch = new URLSearchParams(window.location.search);
+var enable_professors = true;
+var enable_students = true;
+var enable_external = true;
+if(urlsearch.get('dataset') == null){
     dataset = "2017-2020";
+}else{
+    dataset = urlsearch.get('dataset');
+    enable_professors = urlsearch.get('professors')==null?false:true;
+    enable_students = urlsearch.get('students')==null?false:true;
+    enable_external = urlsearch.get('external')==null?false:true;
 }
 
 d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
+    // Groups enabled to display
+    var enabled_groups = [];
+    if (enable_professors) enabled_groups.push(1);
+    if (enable_students) enabled_groups.push(2);
+    if (enable_external) enabled_groups.push(3);
 
-	simulation = d3.forceSimulation(data.nodes)
-	    .force("link", d3.forceLink(data.links).id(function(d) { return d.id; })) 
-    	.force("charge", d3.forceManyBody())
+    // Initialize simulation with all nodes and links
+    simulation = d3.forceSimulation(data.nodes)
+        .force("link", d3.forceLink(data.links).id(function(d) { return d.id; }))
+        .force("charge", d3.forceManyBody().strength(function(d) { return -(d.size*12); }))
         .force("x", d3.forceX())
         .force("y", d3.forceY());
     	//.force("center", d3.forceCenter(width / 2, height / 2));
 
-	//simulation.force("link").links(data.links);
+    // Filter out nodes if groups are disabled
+    simulation.nodes(data.nodes.filter(function(n){ return enabled_groups.includes(n.group_id); }));
+	simulation.force("link").links(data.links.filter(function(l){ return enabled_groups.includes(l.source.group_id) && enabled_groups.includes(l.target.group_id); }));
 
 	//Append a SVG to the body of the html page. Assign this SVG as an object to svg
 	svg = d3.select("#graph").append("svg")
@@ -36,15 +52,15 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
 	//draw lines for the links first
 	var link = g.append("g")
 	    .selectAll("line")
-	    .data(data.links)
+	    .data(simulation.force("link").links())
 	    .enter().append("line")
     	//.attr("class", "links")
         .attr("class", function(d) { if(d.interarea) { return "links interarea"; }else{ return "links"; }})
-    	.attr("stroke-width", function(d) { return d.value });
+    	.attr("stroke-width", function(d) { return d.value/2 }); // TODO: values are doubled, need to fix in dataset
 
 	var node = g.append("g")
     	.selectAll("g")
-	    .data(data.nodes)
+	    .data(simulation.nodes())
     	.enter().append("g")
     	.attr("class", "nodes");
 
@@ -62,7 +78,7 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
     	.attr("width", function(d) { return node_size(d.size)*2; })
     	.attr("height", function(d) { return node_size(d.size)*2; })
       	.attr("fill", function(d) { return color(d.area_id); });
-
+    /*
     // others (group_id == 3) are rounded squares
     node.filter(function(d){return d.group_id == 3})
         .append("rect")
@@ -71,6 +87,13 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
     	.attr("height", function(d) { return node_size(d.size)*2; })
     	.attr("rx", function(d) { return node_size(d.size)/2; })
     	.attr("ry", function(d) { return node_size(d.size)/2; })
+      	.attr("fill", function(d) { return color(d.area_id); });
+    */
+    // others (group_id == 3) are rounded squares
+    node.filter(function(d){return d.group_id == 3})
+        .append("polygon")
+        .on("click", function(d){fill_node_info(d)})
+    	.attr("points", function(d) { side = node_size(d.size)*2; return "0," + side + " " + side + "," + side + " " + side/2 + ",0" ; })
       	.attr("fill", function(d) { return color(d.area_id); });
     
 
@@ -153,6 +176,7 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
     	    .attr("y2", function(d) { return d.target.y; });
 	} 
     fill_legend();
+    fill_menu();
 });
 
 function node_size(n){
@@ -257,13 +281,8 @@ function fill_legend(){
             .attr("y", 45)
             .attr("style", "font-size: 12px")
             .text("Students/Alumni/Pos-doc");
-        g.append("rect")
-            .attr("x", 9)
-            .attr("y", 60)
-            .attr("rx", 3)
-            .attr("ry", 3)
-            .attr("width", 20)
-            .attr("height", 20)
+        g.append("polygon")
+            .attr("points", "9,80 29,80 19,60")
             .attr("fill", "#999");
         g.append("text")
             .attr("x", 40)
@@ -271,6 +290,13 @@ function fill_legend(){
             .attr("style", "font-size: 12px")
             .text("External/Others");
 
+}
+
+function fill_menu(){
+    d3.select("#enable_professors").property("checked", enable_professors);
+    d3.select("#enable_students").property("checked", enable_students);
+    d3.select("#enable_external").property("checked", enable_external);
+    d3.select("#dataset").property("value", dataset);
 }
 
 // All groups enabled at first
