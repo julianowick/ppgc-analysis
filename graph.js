@@ -29,7 +29,7 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
 
     // Initialize simulation with all nodes and links
     simulation = d3.forceSimulation(data.nodes)
-        .force("link", d3.forceLink(data.links).id(function(d) { return d.id; }))
+        .force("link", d3.forceLink(data.links).strength(function(l){ return l.value/30; }).id(function(d) { return d.id; }))
         .force("charge", d3.forceManyBody().strength(function(d) { return -(d.size*12); }))
         .force("x", d3.forceX())
         .force("y", d3.forceY());
