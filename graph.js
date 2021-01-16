@@ -12,7 +12,7 @@ var enable_professors = true;
 var enable_students = true;
 var enable_external = true;
 if(urlsearch.get('dataset') == null){
-    dataset = "2017-2020";
+    dataset = "PPGC-UFRGS-2017-2020";
 }else{
     dataset = urlsearch.get('dataset');
     enable_professors = urlsearch.get('professors')==null?false:true;
@@ -20,7 +20,7 @@ if(urlsearch.get('dataset') == null){
     enable_external = urlsearch.get('external')==null?false:true;
 }
 
-d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
+d3.json('data/graph-' + dataset + '.json').then(function(data){
     // Groups enabled to display
     var enabled_groups = [];
     if (enable_professors) enabled_groups.push(1);
@@ -30,7 +30,7 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
     // Initialize simulation with all nodes and links
     simulation = d3.forceSimulation(data.nodes)
         .force("link", d3.forceLink(data.links).strength(function(l){ return l.value/30; }).id(function(d) { return d.id; }))
-        .force("charge", d3.forceManyBody().strength(function(d) { return -(d.size*12); }))
+        .force("charge", d3.forceManyBody().strength(function(d) { return -(d.size*20); }))
         .force("x", d3.forceX())
         .force("y", d3.forceY());
     	//.force("center", d3.forceCenter(width / 2, height / 2));
@@ -41,7 +41,8 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
 
 	//Append a SVG to the body of the html page. Assign this SVG as an object to svg
 	svg = d3.select("#graph").append("svg")
-        .attr("viewBox", [-width / 2, -height / 2, width, height]);
+        .attr("viewBox", [-width / 2, -height / 2, width, height])
+        //.on("click", function(e){ unselect_nodes(e); });
 		//.attr("width", width)
 	    //.attr("height", height);
 
@@ -88,18 +89,13 @@ d3.json('data/graph-PPGC-UFRGS-' + dataset + '.json').then(function(data){
     
 
 	var labels = node.append("text")
-    	.text(function(d) {
-			if (d.group_id == 1){
-		        return d.label;
-			}else{
-				return "";
-			}
-    	})
-      	.attr('x', 6)
-      	.attr('y', 3);
-
-	  node.append("title")
-	      .text(function(d) { return d.label + " (" + d.size + ") " + "Area: " + d.area_name ; });
+        .text(function(d) { return d.label; })
+        .attr('x', 6)
+        .attr('y', 3);
+    // Display only group 1 labels by default for performane reasons
+    labels.filter(function(d){ return d.group_id != 1 }).attr("display", "none");
+	node.append("title")
+	      .text(function(d) { return d.label + " (" + d.area_name + ")"; });
 
 	//add drag capabilities  
 	var drag_handler = d3.drag()
@@ -173,19 +169,39 @@ function node_size(n){
     return (n/3)+4;
 }
 
-function unselect_nodes(){
+function unselect_nodes(e){
     d3.selectAll("line").property("style", "stroke-opacity: 0.3");
-    d3.selectAll("circle, rect, polygon").property("style", "stroke-width: 1px");
+    d3.selectAll("circle, rect, polygon").property("style", "stroke-width: 1px").attr("opacity", "1");
+    d3.selectAll("text").attr("opacity", "1");
+    d3.selectAll("text").filter(function(d){ if (d === undefined) return false; return d.group_id != 1 }).attr("display", "none");
 }
 
+var selected_node = null;
 function select_node(node, index, shapes){
     // Unselect all previously selected nodes
-    unselect_nodes();
+    unselect_nodes(node);
+    // Second click unselects node
+    if (selected_node == node){
+        selected_node = null;
+        return;
+    }
+    selected_node = node;
     // Increase strock width of shape
     shapes[index].style.strokeWidth = "2px";
     // Increase opacity of all incoming/outgoing links
-    d3.selectAll("line").filter(function(l){ return l.source.id == node.id || l.target.id == node.id; }).property("style", "stroke-opacity: 1");
-    // TODO: display labels for all co-authors
+    var lines = d3.selectAll("line").filter(function(l){ return l.source.id == node.id || l.target.id == node.id; }).property("style", "stroke-opacity: 1");
+    // Dimm everybody else
+    var coauthor_ids = [];
+    lines.each(function(l){
+        if (coauthor_ids.indexOf(l.target.id) === -1)
+            coauthor_ids.push(l.target.id)
+        if (coauthor_ids.indexOf(l.source.id) === -1)
+            coauthor_ids.push(l.source.id)
+    });
+    d3.selectAll("circle, rect, polygon, text").filter(function(n){ if (n === undefined) return false; return !coauthor_ids.includes(n.id);}).attr("opacity", "0.1");
+    d3.selectAll("line").filter(function(l){ return !(l.source.id == node.id || l.target.id == node.id); }).property("style", "stroke-opacity: 0.1");
+    // Display labels for all co-authors
+    d3.selectAll("text").filter(function(n){ if (n === undefined) return false; return coauthor_ids.includes(n.id);}).attr("display", "inline");
     fill_node_info(node);
 }
 
@@ -205,14 +221,26 @@ function fill_node_info(node){
     }
 }
 
+var selected_edge = null;
 function select_edge(edge, index, shapes){
     // Unselect all previously selected nodes
-    unselect_nodes();
-    // Increase strock width of shape
+    unselect_nodes(edge);
+    // Second click unselects edge
+    if (selected_edge == edge){
+        selected_edge = null;
+        return;
+    }
+    selected_edge = edge;
+    // Increase opacity width of edge
     shapes[index].style.strokeOpacity = "1";
-    // Increase opacity of all incoming/outgoing links
+    // Increase stroke width of source and target shapes
     d3.selectAll("circle, rect, polygon").filter(function(n){ if (n === undefined) return false; return n.id == edge.source.id || n.id == edge.target.id; }).property("style", "stroke-width: 2px");
-    // TODO: display labels for source and target
+    // Dimm everybody else
+    var ids = [edge.source.id, edge.target.id];
+    d3.selectAll("circle, rect, polygon, text").filter(function(n){ if (n === undefined) return false; return !ids.includes(n.id);}).attr("opacity", "0.1");
+    d3.selectAll("line").filter(function(l){ return l != edge; }).property("style", "stroke-opacity: 0.1");
+    // Display labels for source and target
+    d3.selectAll("text").filter(function(n){ if (n === undefined) return false; return ids.includes(n.id);}).attr("display", "inline");
     fill_edge_info(edge);
 }
 
@@ -228,6 +256,10 @@ function fill_edge_info(edge){
 function fill_legend(){
     var nodes = simulation.nodes();
 	var links = simulation.force('link').links();
+
+    // TODO: click on legend will unselect nodes. This click should be anyware on the graph.
+    d3.select("#info")
+        .on("click", function(e){ unselect_nodes(e); })
 
     // Fill graph basic info
     d3.select("#info-nodes").text(nodes.length);
