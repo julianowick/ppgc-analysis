@@ -1,6 +1,14 @@
 import csv
+import sys
 
-basefilename = input('Which CSV file would you like to open (comma separated, utf-8): ')
+# Accepts exactly 2 arguments (basefilename, otherfilename)
+if len(sys.argv) == 3:
+    basefilename = sys.argv[1]
+    otherfilename = sys.argv[2]
+    args = True
+else:
+    args = False
+    basefilename = input('Which CSV file would you like to open (comma separated, utf-8): ')
 try:
     with open(basefilename, newline='', encoding='utf8') as csvfile:
         basefreader = csv.reader(csvfile, delimiter=',')
@@ -21,7 +29,8 @@ except FileNotFoundError as e:
 onemorefile = 'y'
 files = 1
 while(onemorefile.lower() == 'y'):
-    otherfilename = input('Which CSV file would you like to merge (comma separated, utf-8): ')
+    if not args:
+        otherfilename = input('Which CSV file would you like to merge (comma separated, utf-8): ')
     try:
         with open(otherfilename, newline='', encoding='utf8') as csvfile:
             otherfreader = csv.reader(csvfile, delimiter=',')
@@ -38,6 +47,8 @@ while(onemorefile.lower() == 'y'):
     except FileNotFoundError as e:
         print('There was an issue processing the file:', str(e))
 
+    if args:
+        break
     onemorefile = input('Do you need to include one more file to merge (y/n)? ')
     files += 1
 

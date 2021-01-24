@@ -1,6 +1,15 @@
 import csv
+import sys
 
-filename = input('Which CSV file would you like to filter: ')
+# Accepts exactly 3 arguments (filename, header, filter)
+if len(sys.argv) == 4:
+    filename = sys.argv[1]
+    key = sys.argv[2]
+    value = sys.argv[3]
+    args = True
+else:
+    args = False
+    filename = input('Which CSV file would you like to filter: ')
 
 try:
     with open(filename, newline='', encoding='iso8859_2') as csvfile:
@@ -10,16 +19,23 @@ try:
         pairs = []
         keepgoing = 'y'
         while(keepgoing.lower() == 'y'):
-            print('Header options are:', str(headers))
+            if not args:
+                print('Header options are:', str(headers))
+                key = input('Which header would you like to filter: ')
 
-            key = input('Which header would you like to filter: ')
             if key not in headers:
+                if args:
+                    exit()
                 print('Invalid header, please choose again!')
                 continue
 
-            value = input('Which value would you like to use for your filter: ')
+            if not args:
+                value = input('Which value would you like to use for your filter: ')
+                keepgoing = input('Do you need to include one more filter (y/n)? ')
+            else:
+                keepgoing = 'n'
+
             pairs.append({'key': headers.index(key), 'value': value})
-            keepgoing = input('Do you need to include one more filter (y/n)? ')
 
         # Find in the CSV file the rows maching all the key/value pairs
         outfilename = filename[0:-4] + '-filtered.csv'

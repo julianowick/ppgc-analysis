@@ -1,11 +1,18 @@
 import csv
 import json
 import operator
+import sys
 from unidecode import unidecode
 
-authorsfilename = input('Inform the authors CSV filename: ')
-papersfilename = input('Inform the papers CSV filename: ')
-outputfilename = input('Inform output json filename: ')
+# Accepts exactly 3 arguments (authorsfilename, papersfilename, outputfilename)
+if len(sys.argv) == 4:
+    authorsfilename = sys.argv[1]
+    papersfilename = sys.argv[2]
+    outputfilename = sys.argv[3]
+else:
+    authorsfilename = input('Inform the authors CSV filename: ')
+    papersfilename = input('Inform the papers CSV filename: ')
+    outputfilename = input('Inform output json filename: ')
 
 with open(authorsfilename, newline='', encoding='utf8') as csvauthors, open(papersfilename, newline='', encoding='utf8') as csvpapers:
     papers = {}
