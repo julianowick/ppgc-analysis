@@ -3,7 +3,29 @@ var width = 1200, height = 800;
 //Global simulation variable
 var simulation;
 //Gloal color scheme for nodes
-var color = d3.scaleOrdinal(d3.schemeCategory10);
+var colors20 = [
+    "#1f77b4", // Dark blue
+    "#ff7f0e", // Dark orange
+    "#2ca02c", // Dark green
+    "#d62728", // Dark red
+    "#9467bd", // Dark purple
+    "#8c564b", // Dark brown
+    "#e377c2", // Dark pink
+    "#7f7f7f", // Dark gray
+    "#bcbd22", // Dark olive
+    "#17becf", // Dark cian
+    "#aec7e8", // Light blue
+    "#ffbb78", // Light orange
+    "#98df8a", // Light green
+    "#ff9896", // Light red
+    "#c5b0d5", // Light purple 
+    "#c49c94", // Light brown
+    "#f7b6d2", // Light pink
+    "#c7c7c7", // Light gray
+    "#dbdb8d", // Light olive
+    "#9edae5"  // Light cian
+]
+var color = d3.scaleOrdinal(colors20);
 //Global SVG drawing
 var svg;
 //Configuration from URL
@@ -12,7 +34,7 @@ var enable_professors = true;
 var enable_students = true;
 var enable_external = true;
 if(urlsearch.get('dataset') == null){
-    dataset = "PPGC-UFRGS-2017-2020";
+    dataset = "UFRGS-PPGC-2017-2020";
 }else{
     dataset = urlsearch.get('dataset');
     enable_professors = urlsearch.get('professors')==null?false:true;
@@ -198,7 +220,7 @@ function select_node(node, index, shapes){
         if (coauthor_ids.indexOf(l.source.id) === -1)
             coauthor_ids.push(l.source.id)
     });
-    d3.selectAll("circle, rect, polygon, text").filter(function(n){ if (n === undefined) return false; return !coauthor_ids.includes(n.id);}).attr("opacity", "0.1");
+    d3.selectAll("circle, rect, polygon, text").filter(function(n){ if (n === undefined) return false; return !coauthor_ids.includes(n.id);}).attr("opacity", "0.2");
     d3.selectAll("line").filter(function(l){ return !(l.source.id == node.id || l.target.id == node.id); }).property("style", "stroke-opacity: 0.1");
     // Display labels for all co-authors
     d3.selectAll("text").filter(function(n){ if (n === undefined) return false; return coauthor_ids.includes(n.id);}).attr("display", "inline");
