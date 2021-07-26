@@ -1,7 +1,7 @@
 import csv
 import sys
 
-def filter_file(inputfilename, key, value, args, outputfilename):
+def filter_file(inputfilename, key, value, outputfilename, args):
     try:
         with open(inputfilename, newline='', encoding='iso8859_1') as csvfile:
             freader = csv.reader(csvfile, delimiter=';')
@@ -71,4 +71,4 @@ if __name__ == "__main__":
         value = None
         outputfilename = None
 
-    filter_file(inputfilename, key, value, args, outputfilename)
+    filter_file(inputfilename, key, value, outputfilename, args)
