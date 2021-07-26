@@ -12,7 +12,7 @@ else:
     filename = input('Which CSV file would you like to filter: ')
 
 try:
-    with open(filename, newline='', encoding='iso8859_2') as csvfile:
+    with open(filename, newline='', encoding='iso8859_1') as csvfile:
         freader = csv.reader(csvfile, delimiter=';')
         headers = next(freader) # Read just the first line (headers)
 
