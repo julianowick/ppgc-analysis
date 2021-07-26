@@ -53,8 +53,8 @@ def merge_files(basefilename, otherfilename, outputfilename, args):
 
 # when used via comand line
 if __name__ == "__main__":
-    # Accepts exactly 3 arguments (basefilename, otherfilename, outputfilename)
-    if len(sys.argv) == 3:
+    # accepts exactly 3 arguments (basefilename, otherfilename, outputfilename)
+    if len(sys.argv) == 4:
         basefilename = sys.argv[1]
         otherfilename = sys.argv[2]
         outputfilename = sys.argv[3]
