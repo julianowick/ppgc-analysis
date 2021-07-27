@@ -1,6 +1,7 @@
 import os
 import filter
 import merge
+import normalize
 import sucupira
 
 ppgs = [
@@ -88,6 +89,12 @@ for ppg in ppgs:
         otherfile = f"data/{file_type}-2017a2020-artpe-{ppg['ENTIDADE_ENSINO']}-{ppg['ACRONYM']}.csv"
         outputfile = f"data/{file_type}-2017a2020-{ppg['ENTIDADE_ENSINO']}-{ppg['ACRONYM']}.csv"
         merge.merge_files(basefile, otherfile, outputfile, True)
+
+    # normalize author names
+    inputfile = f"data/prod-autor-2017a2020-{ppg['ENTIDADE_ENSINO']}-{ppg['ACRONYM']}.csv"
+    outputfile = f"data/prod-autor-2017a2020-{ppg['ENTIDADE_ENSINO']}-{ppg['ACRONYM']}-normalized.csv"
+    normalize.normalize_names(inputfile, outputfile)
+    os.replace(outputfile, inputfile)
 
     # create graph from merged files
     authorsfile = f"data/prod-autor-2017a2020-{ppg['ENTIDADE_ENSINO']}-{ppg['ACRONYM']}.csv"

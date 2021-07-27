@@ -1,7 +1,7 @@
 import csv
 import sys
 
-def normalize_names(inputfilename, outputfilename, args):
+def normalize_names(inputfilename, outputfilename):
     try:
         with open(inputfilename, newline='', encoding='utf8') as csvfile:
             freader = csv.reader(csvfile, delimiter=',')
@@ -65,4 +65,4 @@ if __name__ == "__main__":
         if ofn:
             outputfilename = ofn
 
-    normalize_names(inputfilename, outputfilename, args)
+    normalize_names(inputfilename, outputfilename)
