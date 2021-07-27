@@ -7885,9 +7885,9 @@
             "label": "MARCILEI APARECIDA GUAZZELLI",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
-            "size": 5,
-            "area_id": 3,
-            "area_name": "",
+            "size": 7,
+            "area_id": 5,
+            "area_name": "TESTE DE CIRCUITOS E SISTEMAS ELETRONICOS",
             "areas": [
                 {
                     "area_name": "",
@@ -7902,11 +7902,11 @@
                 {
                     "area_name": "TESTE DE CIRCUITOS E SISTEMAS ELETRONICOS",
                     "area_id": 5,
-                    "count": 1
+                    "count": 3
                 }
             ],
-            "line_id": 4,
-            "line_name": "",
+            "line_id": 18,
+            "line_name": "QUALIFICACAO DE CIRCUITOS INTEGRADOS SOB RADIACAO",
             "lines": [
                 {
                     "line_name": "",
@@ -7921,7 +7921,7 @@
                 {
                     "line_name": "QUALIFICACAO DE CIRCUITOS INTEGRADOS SOB RADIACAO",
                     "line_id": 18,
-                    "count": 1
+                    "count": 3
                 }
             ]
         },
@@ -9617,31 +9617,6 @@
         },
         {
             "id": 316,
-            "label": "MARCILEI APARECIDA GUAZZELI DA SILVEIRA",
-            "group_id": 3,
-            "group_name": "PARTICIPANTE EXTERNO",
-            "size": 2,
-            "area_id": 5,
-            "area_name": "TESTE DE CIRCUITOS E SISTEMAS ELETRONICOS",
-            "areas": [
-                {
-                    "area_name": "TESTE DE CIRCUITOS E SISTEMAS ELETRONICOS",
-                    "area_id": 5,
-                    "count": 2
-                }
-            ],
-            "line_id": 18,
-            "line_name": "QUALIFICACAO DE CIRCUITOS INTEGRADOS SOB RADIACAO",
-            "lines": [
-                {
-                    "line_name": "QUALIFICACAO DE CIRCUITOS INTEGRADOS SOB RADIACAO",
-                    "line_id": 18,
-                    "count": 2
-                }
-            ]
-        },
-        {
-            "id": 317,
             "label": "EDUARDO CHIELLE",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -9666,7 +9641,7 @@
             ]
         },
         {
-            "id": 318,
+            "id": 317,
             "label": "ALESSANDRO MASI",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -9691,7 +9666,7 @@
             ]
         },
         {
-            "id": 319,
+            "id": 318,
             "label": "MARKUS BRUGGER",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -9716,7 +9691,7 @@
             ]
         },
         {
-            "id": 320,
+            "id": 319,
             "label": "GEORGIOS TSILIGIANNIS",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -9741,7 +9716,7 @@
             ]
         },
         {
-            "id": 321,
+            "id": 320,
             "label": "SALVATORE DANZECA",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -9766,7 +9741,7 @@
             ]
         },
         {
-            "id": 322,
+            "id": 321,
             "label": "JOAO HENRIQUE ZIMNOCH DOS SANTOS",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -9791,7 +9766,7 @@
             ]
         },
         {
-            "id": 323,
+            "id": 322,
             "label": "RODRIGO PALMIERI",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -9816,7 +9791,7 @@
             ]
         },
         {
-            "id": 324,
+            "id": 323,
             "label": "ELIANA CRISTINA GALLAND BARRERA",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -9841,7 +9816,7 @@
             ]
         },
         {
-            "id": 325,
+            "id": 324,
             "label": "MICHELE GUSSON VIEIRA DA SILVA",
             "group_id": 2,
             "group_name": "DISCENTE",
@@ -9866,7 +9841,7 @@
             ]
         },
         {
-            "id": 326,
+            "id": 325,
             "label": "ZACARIAS EDUARDO FABRIM",
             "group_id": 2,
             "group_name": "DISCENTE",
@@ -9891,7 +9866,7 @@
             ]
         },
         {
-            "id": 327,
+            "id": 326,
             "label": "MARIANA DE MELLO TIMM",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -9916,7 +9891,7 @@
             ]
         },
         {
-            "id": 328,
+            "id": 327,
             "label": "CRISTIANE MARIN",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -9941,7 +9916,7 @@
             ]
         },
         {
-            "id": 329,
+            "id": 328,
             "label": "PAULO FERNANDO PAPALEO FICHTNER",
             "group_id": 1,
             "group_name": "DOCENTE",
@@ -9966,7 +9941,7 @@
             ]
         },
         {
-            "id": 330,
+            "id": 329,
             "label": "DANIEL LORSCHEITTER BAPTISTA",
             "group_id": 1,
             "group_name": "DOCENTE",
@@ -9991,7 +9966,7 @@
             ]
         },
         {
-            "id": 331,
+            "id": 330,
             "label": "EDUARDA RODRIGUES MONTEIRO",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -10016,7 +9991,7 @@
             ]
         },
         {
-            "id": 332,
+            "id": 331,
             "label": "KATHRIN MULLER",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -10041,7 +10016,7 @@
             ]
         },
         {
-            "id": 333,
+            "id": 332,
             "label": "CESAR AUGUSTO MISSIO MARCON",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -10066,7 +10041,7 @@
             ]
         },
         {
-            "id": 334,
+            "id": 333,
             "label": "THAIS CHRISTINA WEBBER DOS SANTOS",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -10091,7 +10066,7 @@
             ]
         },
         {
-            "id": 335,
+            "id": 334,
             "label": "GUILHERME SCHWANKE CARDOSO",
             "group_id": 2,
             "group_name": "DISCENTE",
@@ -10116,7 +10091,7 @@
             ]
         },
         {
-            "id": 336,
+            "id": 335,
             "label": "ALISSON JAMIE CRUZ LANOT",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -10141,7 +10116,7 @@
             ]
         },
         {
-            "id": 337,
+            "id": 336,
             "label": "ROBERT BOGDAN STASZEWSKI",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -10166,7 +10141,7 @@
             ]
         },
         {
-            "id": 338,
+            "id": 337,
             "label": "FENG-WEI KUO",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -10191,7 +10166,7 @@
             ]
         },
         {
-            "id": 339,
+            "id": 338,
             "label": "MASOUD BABAIE",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -10216,7 +10191,7 @@
             ]
         },
         {
-            "id": 340,
+            "id": 339,
             "label": "MARTHA JOHANNA SEPULVEDA FLOREZ",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -10241,7 +10216,7 @@
             ]
         },
         {
-            "id": 341,
+            "id": 340,
             "label": "GEORG SIGL",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -10266,7 +10241,7 @@
             ]
         },
         {
-            "id": 342,
+            "id": 341,
             "label": "LILIAN BOSSUE",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -10291,7 +10266,7 @@
             ]
         },
         {
-            "id": 343,
+            "id": 342,
             "label": "CEZAR RODOLFO WEDIG REINBRECHT",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -10316,7 +10291,7 @@
             ]
         },
         {
-            "id": 344,
+            "id": 343,
             "label": "DALTON MARTINI COLOMBO",
             "group_id": 3,
             "group_name": "PARTICIPANTE EXTERNO",
@@ -10341,7 +10316,7 @@
             ]
         },
         {
-            "id": 345,
+            "id": 344,
             "label": "ALAN CARLOS JUNIOR ROSSETTO",
             "group_id": 2,
             "group_name": "DISCENTE",
@@ -10514,7 +10489,7 @@
         {
             "source": 1,
             "source_label": "TIAGO ROBERTO BALEN",
-            "target": 335,
+            "target": 334,
             "target_label": "GUILHERME SCHWANKE CARDOSO",
             "value": 4,
             "interarea": false,
@@ -10532,7 +10507,7 @@
         {
             "source": 1,
             "source_label": "TIAGO ROBERTO BALEN",
-            "target": 336,
+            "target": 335,
             "target_label": "ALISSON JAMIE CRUZ LANOT",
             "value": 2,
             "interarea": false,
@@ -11846,7 +11821,7 @@
         {
             "source": 15,
             "source_label": "SERGIO BAMPI",
-            "target": 331,
+            "target": 330,
             "target_label": "EDUARDA RODRIGUES MONTEIRO",
             "value": 2,
             "interarea": false,
@@ -11855,7 +11830,7 @@
         {
             "source": 15,
             "source_label": "SERGIO BAMPI",
-            "target": 337,
+            "target": 336,
             "target_label": "ROBERT BOGDAN STASZEWSKI",
             "value": 2,
             "interarea": false,
@@ -11864,7 +11839,7 @@
         {
             "source": 15,
             "source_label": "SERGIO BAMPI",
-            "target": 338,
+            "target": 337,
             "target_label": "FENG-WEI KUO",
             "value": 2,
             "interarea": false,
@@ -11873,7 +11848,7 @@
         {
             "source": 15,
             "source_label": "SERGIO BAMPI",
-            "target": 339,
+            "target": 338,
             "target_label": "MASOUD BABAIE",
             "value": 2,
             "interarea": false,
@@ -11882,7 +11857,7 @@
         {
             "source": 15,
             "source_label": "SERGIO BAMPI",
-            "target": 344,
+            "target": 343,
             "target_label": "DALTON MARTINI COLOMBO",
             "value": 2,
             "interarea": false,
@@ -11891,7 +11866,7 @@
         {
             "source": 15,
             "source_label": "SERGIO BAMPI",
-            "target": 345,
+            "target": 344,
             "target_label": "ALAN CARLOS JUNIOR ROSSETTO",
             "value": 2,
             "interarea": false,
@@ -12488,8 +12463,8 @@
             "target": 253,
             "target_label": "MARCILEI APARECIDA GUAZZELLI",
             "value": 4,
-            "interarea": false,
-            "interline": false
+            "interarea": true,
+            "interline": true
         },
         {
             "source": 28,
@@ -13297,9 +13272,9 @@
             "source_label": "FERNANDA GUSMAO DE LIMA KASTENSMIDT",
             "target": 253,
             "target_label": "MARCILEI APARECIDA GUAZZELLI",
-            "value": 10,
+            "value": 14,
             "interarea": false,
-            "interline": false
+            "interline": true
         },
         {
             "source": 33,
@@ -13394,15 +13369,6 @@
         {
             "source": 33,
             "source_label": "FERNANDA GUSMAO DE LIMA KASTENSMIDT",
-            "target": 316,
-            "target_label": "MARCILEI APARECIDA GUAZZELI DA SILVEIRA",
-            "value": 4,
-            "interarea": false,
-            "interline": true
-        },
-        {
-            "source": 33,
-            "source_label": "FERNANDA GUSMAO DE LIMA KASTENSMIDT",
             "target": 235,
             "target_label": "JORGE LUCIO TONFAT SECLEN",
             "value": 8,
@@ -13412,7 +13378,7 @@
         {
             "source": 33,
             "source_label": "FERNANDA GUSMAO DE LIMA KASTENSMIDT",
-            "target": 317,
+            "target": 316,
             "target_label": "EDUARDO CHIELLE",
             "value": 2,
             "interarea": false,
@@ -13421,7 +13387,7 @@
         {
             "source": 33,
             "source_label": "FERNANDA GUSMAO DE LIMA KASTENSMIDT",
-            "target": 318,
+            "target": 317,
             "target_label": "ALESSANDRO MASI",
             "value": 2,
             "interarea": false,
@@ -13430,7 +13396,7 @@
         {
             "source": 33,
             "source_label": "FERNANDA GUSMAO DE LIMA KASTENSMIDT",
-            "target": 319,
+            "target": 318,
             "target_label": "MARKUS BRUGGER",
             "value": 2,
             "interarea": false,
@@ -13439,7 +13405,7 @@
         {
             "source": 33,
             "source_label": "FERNANDA GUSMAO DE LIMA KASTENSMIDT",
-            "target": 320,
+            "target": 319,
             "target_label": "GEORGIOS TSILIGIANNIS",
             "value": 2,
             "interarea": false,
@@ -13448,7 +13414,7 @@
         {
             "source": 33,
             "source_label": "FERNANDA GUSMAO DE LIMA KASTENSMIDT",
-            "target": 321,
+            "target": 320,
             "target_label": "SALVATORE DANZECA",
             "value": 2,
             "interarea": false,
@@ -14802,7 +14768,7 @@
             "target_label": "MARCILEI APARECIDA GUAZZELLI",
             "value": 4,
             "interarea": false,
-            "interline": false
+            "interline": true
         },
         {
             "source": 54,
@@ -15662,7 +15628,7 @@
         {
             "source": 72,
             "source_label": "GUILHERME PEREIRA PAIM",
-            "target": 331,
+            "target": 330,
             "target_label": "EDUARDA RODRIGUES MONTEIRO",
             "value": 2,
             "interarea": false,
@@ -16040,7 +16006,7 @@
         {
             "source": 79,
             "source_label": "GILSON INACIO WIRTH",
-            "target": 325,
+            "target": 324,
             "target_label": "MICHELE GUSSON VIEIRA DA SILVA",
             "value": 2,
             "interarea": false,
@@ -16049,7 +16015,7 @@
         {
             "source": 79,
             "source_label": "GILSON INACIO WIRTH",
-            "target": 332,
+            "target": 331,
             "target_label": "KATHRIN MULLER",
             "value": 2,
             "interarea": false,
@@ -16058,7 +16024,7 @@
         {
             "source": 79,
             "source_label": "GILSON INACIO WIRTH",
-            "target": 344,
+            "target": 343,
             "target_label": "DALTON MARTINI COLOMBO",
             "value": 2,
             "interarea": true,
@@ -16067,7 +16033,7 @@
         {
             "source": 79,
             "source_label": "GILSON INACIO WIRTH",
-            "target": 345,
+            "target": 344,
             "target_label": "ALAN CARLOS JUNIOR ROSSETTO",
             "value": 2,
             "interarea": true,
@@ -16890,7 +16856,7 @@
             "target_label": "MARCILEI APARECIDA GUAZZELLI",
             "value": 4,
             "interarea": false,
-            "interline": false
+            "interline": true
         },
         {
             "source": 116,
@@ -17132,8 +17098,8 @@
             "target": 253,
             "target_label": "MARCILEI APARECIDA GUAZZELLI",
             "value": 4,
-            "interarea": false,
-            "interline": false
+            "interarea": true,
+            "interline": true
         },
         {
             "source": 117,
@@ -18209,7 +18175,7 @@
         {
             "source": 153,
             "source_label": "BRUNO ZATT",
-            "target": 331,
+            "target": 330,
             "target_label": "EDUARDA RODRIGUES MONTEIRO",
             "value": 2,
             "interarea": false,
@@ -18434,7 +18400,7 @@
         {
             "source": 161,
             "source_label": "ALTAMIRO AMADEU SUSIN",
-            "target": 333,
+            "target": 332,
             "target_label": "CESAR AUGUSTO MISSIO MARCON",
             "value": 2,
             "interarea": false,
@@ -18443,7 +18409,7 @@
         {
             "source": 161,
             "source_label": "ALTAMIRO AMADEU SUSIN",
-            "target": 334,
+            "target": 333,
             "target_label": "THAIS CHRISTINA WEBBER DOS SANTOS",
             "value": 2,
             "interarea": false,
@@ -18452,7 +18418,7 @@
         {
             "source": 161,
             "source_label": "ALTAMIRO AMADEU SUSIN",
-            "target": 340,
+            "target": 339,
             "target_label": "MARTHA JOHANNA SEPULVEDA FLOREZ",
             "value": 2,
             "interarea": false,
@@ -18461,7 +18427,7 @@
         {
             "source": 161,
             "source_label": "ALTAMIRO AMADEU SUSIN",
-            "target": 341,
+            "target": 340,
             "target_label": "GEORG SIGL",
             "value": 2,
             "interarea": false,
@@ -18470,7 +18436,7 @@
         {
             "source": 161,
             "source_label": "ALTAMIRO AMADEU SUSIN",
-            "target": 342,
+            "target": 341,
             "target_label": "LILIAN BOSSUE",
             "value": 2,
             "interarea": false,
@@ -18479,7 +18445,7 @@
         {
             "source": 161,
             "source_label": "ALTAMIRO AMADEU SUSIN",
-            "target": 343,
+            "target": 342,
             "target_label": "CEZAR RODOLFO WEDIG REINBRECHT",
             "value": 2,
             "interarea": false,
@@ -18623,7 +18589,7 @@
         {
             "source": 169,
             "source_label": "THORSTEN MEYER",
-            "target": 332,
+            "target": 331,
             "target_label": "KATHRIN MULLER",
             "value": 2,
             "interarea": false,
@@ -18650,7 +18616,7 @@
         {
             "source": 170,
             "source_label": "ULRICH HILLERINGMANN",
-            "target": 332,
+            "target": 331,
             "target_label": "KATHRIN MULLER",
             "value": 2,
             "interarea": false,
@@ -18668,7 +18634,7 @@
         {
             "source": 171,
             "source_label": "THALES EXENBERGER BECKER",
-            "target": 336,
+            "target": 335,
             "target_label": "ALISSON JAMIE CRUZ LANOT",
             "value": 2,
             "interarea": false,
@@ -18677,7 +18643,7 @@
         {
             "source": 171,
             "source_label": "THALES EXENBERGER BECKER",
-            "target": 335,
+            "target": 334,
             "target_label": "GUILHERME SCHWANKE CARDOSO",
             "value": 2,
             "interarea": false,
@@ -18704,7 +18670,7 @@
         {
             "source": 172,
             "source_label": "FABIO FEDRIZZI VIDOR",
-            "target": 332,
+            "target": 331,
             "target_label": "KATHRIN MULLER",
             "value": 2,
             "interarea": false,
@@ -18803,7 +18769,7 @@
         {
             "source": 176,
             "source_label": "THIAGO HANNA BOTH",
-            "target": 325,
+            "target": 324,
             "target_label": "MICHELE GUSSON VIEIRA DA SILVA",
             "value": 2,
             "interarea": false,
@@ -18812,7 +18778,7 @@
         {
             "source": 177,
             "source_label": "GABRIELA FIRPO FURTADO",
-            "target": 325,
+            "target": 324,
             "target_label": "MICHELE GUSSON VIEIRA DA SILVA",
             "value": 2,
             "interarea": false,
@@ -19005,7 +18971,7 @@
             "target_label": "MARCILEI APARECIDA GUAZZELLI",
             "value": 6,
             "interarea": false,
-            "interline": false
+            "interline": true
         },
         {
             "source": 188,
@@ -19057,7 +19023,7 @@
             "source_label": "LUCAS ANTUNES TAMBARA",
             "target": 253,
             "target_label": "MARCILEI APARECIDA GUAZZELLI",
-            "value": 6,
+            "value": 8,
             "interarea": false,
             "interline": false
         },
@@ -19091,15 +19057,6 @@
         {
             "source": 189,
             "source_label": "LUCAS ANTUNES TAMBARA",
-            "target": 316,
-            "target_label": "MARCILEI APARECIDA GUAZZELI DA SILVEIRA",
-            "value": 2,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 189,
-            "source_label": "LUCAS ANTUNES TAMBARA",
             "target": 235,
             "target_label": "JORGE LUCIO TONFAT SECLEN",
             "value": 6,
@@ -19109,7 +19066,7 @@
         {
             "source": 189,
             "source_label": "LUCAS ANTUNES TAMBARA",
-            "target": 317,
+            "target": 316,
             "target_label": "EDUARDO CHIELLE",
             "value": 2,
             "interarea": false,
@@ -19118,7 +19075,7 @@
         {
             "source": 189,
             "source_label": "LUCAS ANTUNES TAMBARA",
-            "target": 318,
+            "target": 317,
             "target_label": "ALESSANDRO MASI",
             "value": 2,
             "interarea": false,
@@ -19127,7 +19084,7 @@
         {
             "source": 189,
             "source_label": "LUCAS ANTUNES TAMBARA",
-            "target": 319,
+            "target": 318,
             "target_label": "MARKUS BRUGGER",
             "value": 2,
             "interarea": false,
@@ -19136,7 +19093,7 @@
         {
             "source": 189,
             "source_label": "LUCAS ANTUNES TAMBARA",
-            "target": 320,
+            "target": 319,
             "target_label": "GEORGIOS TSILIGIANNIS",
             "value": 2,
             "interarea": false,
@@ -19145,7 +19102,7 @@
         {
             "source": 189,
             "source_label": "LUCAS ANTUNES TAMBARA",
-            "target": 321,
+            "target": 320,
             "target_label": "SALVATORE DANZECA",
             "value": 2,
             "interarea": false,
@@ -19307,8 +19264,8 @@
         {
             "source": 200,
             "source_label": "ANDRE FLORES DOS SANTOS",
-            "target": 316,
-            "target_label": "MARCILEI APARECIDA GUAZZELI DA SILVEIRA",
+            "target": 253,
+            "target_label": "MARCILEI APARECIDA GUAZZELLI",
             "value": 2,
             "interarea": false,
             "interline": false
@@ -19433,7 +19390,7 @@
         {
             "source": 204,
             "source_label": "ODAIR LELIS GONCALEZ",
-            "target": 344,
+            "target": 343,
             "target_label": "DALTON MARTINI COLOMBO",
             "value": 2,
             "interarea": true,
@@ -19442,7 +19399,7 @@
         {
             "source": 204,
             "source_label": "ODAIR LELIS GONCALEZ",
-            "target": 345,
+            "target": 344,
             "target_label": "ALAN CARLOS JUNIOR ROSSETTO",
             "value": 2,
             "interarea": true,
@@ -19955,7 +19912,7 @@
         {
             "source": 221,
             "source_label": "FERNANDA CHIARELLO STEDILE",
-            "target": 322,
+            "target": 321,
             "target_label": "JOAO HENRIQUE ZIMNOCH DOS SANTOS",
             "value": 2,
             "interarea": false,
@@ -19964,7 +19921,7 @@
         {
             "source": 221,
             "source_label": "FERNANDA CHIARELLO STEDILE",
-            "target": 323,
+            "target": 322,
             "target_label": "RODRIGO PALMIERI",
             "value": 2,
             "interarea": false,
@@ -19973,7 +19930,7 @@
         {
             "source": 221,
             "source_label": "FERNANDA CHIARELLO STEDILE",
-            "target": 324,
+            "target": 323,
             "target_label": "ELIANA CRISTINA GALLAND BARRERA",
             "value": 2,
             "interarea": false,
@@ -20099,8 +20056,8 @@
         {
             "source": 235,
             "source_label": "JORGE LUCIO TONFAT SECLEN",
-            "target": 316,
-            "target_label": "MARCILEI APARECIDA GUAZZELI DA SILVEIRA",
+            "target": 253,
+            "target_label": "MARCILEI APARECIDA GUAZZELLI",
             "value": 4,
             "interarea": false,
             "interline": false
@@ -20596,7 +20553,7 @@
             "source_label": "NEMITALA ADDED",
             "target": 253,
             "target_label": "MARCILEI APARECIDA GUAZZELLI",
-            "value": 10,
+            "value": 14,
             "interarea": false,
             "interline": false
         },
@@ -20639,15 +20596,6 @@
         {
             "source": 252,
             "source_label": "NEMITALA ADDED",
-            "target": 316,
-            "target_label": "MARCILEI APARECIDA GUAZZELI DA SILVEIRA",
-            "value": 4,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 252,
-            "source_label": "NEMITALA ADDED",
             "target": 302,
             "target_label": "LAURENT ARTOLA",
             "value": 2,
@@ -20668,7 +20616,7 @@
             "source_label": "MARCILEI APARECIDA GUAZZELLI",
             "target": 254,
             "target_label": "NILBERTO HEDER MEDINA",
-            "value": 10,
+            "value": 14,
             "interarea": false,
             "interline": false
         },
@@ -20677,7 +20625,7 @@
             "source_label": "MARCILEI APARECIDA GUAZZELLI",
             "target": 255,
             "target_label": "VITOR ANGELO PAULINO DE AGUIAR",
-            "value": 10,
+            "value": 14,
             "interarea": false,
             "interline": false
         },
@@ -20686,9 +20634,36 @@
             "source_label": "MARCILEI APARECIDA GUAZZELLI",
             "target": 304,
             "target_label": "EDUARDO LUIZ AUGUSTO MACCHIONE",
-            "value": 2,
+            "value": 4,
             "interarea": false,
             "interline": false
+        },
+        {
+            "source": 253,
+            "source_label": "MARCILEI APARECIDA GUAZZELLI",
+            "target": 315,
+            "target_label": "FERNANDO RODRIGUES AGUIRRE",
+            "value": 4,
+            "interarea": false,
+            "interline": false
+        },
+        {
+            "source": 253,
+            "source_label": "MARCILEI APARECIDA GUAZZELLI",
+            "target": 302,
+            "target_label": "LAURENT ARTOLA",
+            "value": 2,
+            "interarea": true,
+            "interline": true
+        },
+        {
+            "source": 253,
+            "source_label": "MARCILEI APARECIDA GUAZZELLI",
+            "target": 303,
+            "target_label": "GUILLAUME HUBERT",
+            "value": 2,
+            "interarea": true,
+            "interline": true
         },
         {
             "source": 254,
@@ -20720,15 +20695,6 @@
         {
             "source": 254,
             "source_label": "NILBERTO HEDER MEDINA",
-            "target": 316,
-            "target_label": "MARCILEI APARECIDA GUAZZELI DA SILVEIRA",
-            "value": 4,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 254,
-            "source_label": "NILBERTO HEDER MEDINA",
             "target": 302,
             "target_label": "LAURENT ARTOLA",
             "value": 2,
@@ -20758,15 +20724,6 @@
             "source_label": "VITOR ANGELO PAULINO DE AGUIAR",
             "target": 315,
             "target_label": "FERNANDO RODRIGUES AGUIRRE",
-            "value": 4,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 255,
-            "source_label": "VITOR ANGELO PAULINO DE AGUIAR",
-            "target": 316,
-            "target_label": "MARCILEI APARECIDA GUAZZELI DA SILVEIRA",
             "value": 4,
             "interarea": false,
             "interline": false
@@ -21501,15 +21458,6 @@
             "interline": true
         },
         {
-            "source": 302,
-            "source_label": "LAURENT ARTOLA",
-            "target": 316,
-            "target_label": "MARCILEI APARECIDA GUAZZELI DA SILVEIRA",
-            "value": 2,
-            "interarea": true,
-            "interline": true
-        },
-        {
             "source": 303,
             "source_label": "GUILLAUME HUBERT",
             "target": 304,
@@ -21528,28 +21476,10 @@
             "interline": true
         },
         {
-            "source": 303,
-            "source_label": "GUILLAUME HUBERT",
-            "target": 316,
-            "target_label": "MARCILEI APARECIDA GUAZZELI DA SILVEIRA",
-            "value": 2,
-            "interarea": true,
-            "interline": true
-        },
-        {
             "source": 304,
             "source_label": "EDUARDO LUIZ AUGUSTO MACCHIONE",
             "target": 315,
             "target_label": "FERNANDO RODRIGUES AGUIRRE",
-            "value": 2,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 304,
-            "source_label": "EDUARDO LUIZ AUGUSTO MACCHIONE",
-            "target": 316,
-            "target_label": "MARCILEI APARECIDA GUAZZELI DA SILVEIRA",
             "value": 2,
             "interarea": false,
             "interline": false
@@ -21629,7 +21559,7 @@
         {
             "source": 311,
             "source_label": "SANDRO BINSFELD FERREIRA",
-            "target": 337,
+            "target": 336,
             "target_label": "ROBERT BOGDAN STASZEWSKI",
             "value": 2,
             "interarea": false,
@@ -21638,7 +21568,7 @@
         {
             "source": 311,
             "source_label": "SANDRO BINSFELD FERREIRA",
-            "target": 338,
+            "target": 337,
             "target_label": "FENG-WEI KUO",
             "value": 2,
             "interarea": false,
@@ -21647,7 +21577,7 @@
         {
             "source": 311,
             "source_label": "SANDRO BINSFELD FERREIRA",
-            "target": 339,
+            "target": 338,
             "target_label": "MASOUD BABAIE",
             "value": 2,
             "interarea": false,
@@ -21663,27 +21593,45 @@
             "interline": false
         },
         {
-            "source": 315,
-            "source_label": "FERNANDO RODRIGUES AGUIRRE",
-            "target": 316,
-            "target_label": "MARCILEI APARECIDA GUAZZELI DA SILVEIRA",
-            "value": 4,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 317,
+            "source": 316,
             "source_label": "EDUARDO CHIELLE",
-            "target": 318,
+            "target": 317,
             "target_label": "ALESSANDRO MASI",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 317,
+            "source": 316,
+            "source_label": "EDUARDO CHIELLE",
+            "target": 318,
+            "target_label": "MARKUS BRUGGER",
+            "value": 2,
+            "interarea": false,
+            "interline": false
+        },
+        {
+            "source": 316,
             "source_label": "EDUARDO CHIELLE",
             "target": 319,
+            "target_label": "GEORGIOS TSILIGIANNIS",
+            "value": 2,
+            "interarea": false,
+            "interline": false
+        },
+        {
+            "source": 316,
+            "source_label": "EDUARDO CHIELLE",
+            "target": 320,
+            "target_label": "SALVATORE DANZECA",
+            "value": 2,
+            "interarea": false,
+            "interline": false
+        },
+        {
+            "source": 317,
+            "source_label": "ALESSANDRO MASI",
+            "target": 318,
             "target_label": "MARKUS BRUGGER",
             "value": 2,
             "interarea": false,
@@ -21691,8 +21639,8 @@
         },
         {
             "source": 317,
-            "source_label": "EDUARDO CHIELLE",
-            "target": 320,
+            "source_label": "ALESSANDRO MASI",
+            "target": 319,
             "target_label": "GEORGIOS TSILIGIANNIS",
             "value": 2,
             "interarea": false,
@@ -21700,8 +21648,8 @@
         },
         {
             "source": 317,
-            "source_label": "EDUARDO CHIELLE",
-            "target": 321,
+            "source_label": "ALESSANDRO MASI",
+            "target": 320,
             "target_label": "SALVATORE DANZECA",
             "value": 2,
             "interarea": false,
@@ -21709,17 +21657,8 @@
         },
         {
             "source": 318,
-            "source_label": "ALESSANDRO MASI",
+            "source_label": "MARKUS BRUGGER",
             "target": 319,
-            "target_label": "MARKUS BRUGGER",
-            "value": 2,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 318,
-            "source_label": "ALESSANDRO MASI",
-            "target": 320,
             "target_label": "GEORGIOS TSILIGIANNIS",
             "value": 2,
             "interarea": false,
@@ -21727,80 +21666,89 @@
         },
         {
             "source": 318,
-            "source_label": "ALESSANDRO MASI",
-            "target": 321,
-            "target_label": "SALVATORE DANZECA",
-            "value": 2,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 319,
             "source_label": "MARKUS BRUGGER",
             "target": 320,
-            "target_label": "GEORGIOS TSILIGIANNIS",
-            "value": 2,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 319,
-            "source_label": "MARKUS BRUGGER",
-            "target": 321,
             "target_label": "SALVATORE DANZECA",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 320,
+            "source": 319,
             "source_label": "GEORGIOS TSILIGIANNIS",
-            "target": 321,
+            "target": 320,
             "target_label": "SALVATORE DANZECA",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 322,
+            "source": 321,
             "source_label": "JOAO HENRIQUE ZIMNOCH DOS SANTOS",
-            "target": 323,
+            "target": 322,
             "target_label": "RODRIGO PALMIERI",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 322,
+            "source": 321,
             "source_label": "JOAO HENRIQUE ZIMNOCH DOS SANTOS",
-            "target": 324,
+            "target": 323,
             "target_label": "ELIANA CRISTINA GALLAND BARRERA",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 323,
+            "source": 322,
             "source_label": "RODRIGO PALMIERI",
-            "target": 324,
+            "target": 323,
             "target_label": "ELIANA CRISTINA GALLAND BARRERA",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 326,
+            "source": 325,
             "source_label": "ZACARIAS EDUARDO FABRIM",
-            "target": 327,
+            "target": 326,
             "target_label": "MARIANA DE MELLO TIMM",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 326,
+            "source": 325,
+            "source_label": "ZACARIAS EDUARDO FABRIM",
+            "target": 327,
+            "target_label": "CRISTIANE MARIN",
+            "value": 2,
+            "interarea": false,
+            "interline": false
+        },
+        {
+            "source": 325,
             "source_label": "ZACARIAS EDUARDO FABRIM",
             "target": 328,
+            "target_label": "PAULO FERNANDO PAPALEO FICHTNER",
+            "value": 2,
+            "interarea": false,
+            "interline": false
+        },
+        {
+            "source": 325,
+            "source_label": "ZACARIAS EDUARDO FABRIM",
+            "target": 329,
+            "target_label": "DANIEL LORSCHEITTER BAPTISTA",
+            "value": 2,
+            "interarea": false,
+            "interline": false
+        },
+        {
+            "source": 326,
+            "source_label": "MARIANA DE MELLO TIMM",
+            "target": 327,
             "target_label": "CRISTIANE MARIN",
             "value": 2,
             "interarea": false,
@@ -21808,8 +21756,8 @@
         },
         {
             "source": 326,
-            "source_label": "ZACARIAS EDUARDO FABRIM",
-            "target": 329,
+            "source_label": "MARIANA DE MELLO TIMM",
+            "target": 328,
             "target_label": "PAULO FERNANDO PAPALEO FICHTNER",
             "value": 2,
             "interarea": false,
@@ -21817,8 +21765,8 @@
         },
         {
             "source": 326,
-            "source_label": "ZACARIAS EDUARDO FABRIM",
-            "target": 330,
+            "source_label": "MARIANA DE MELLO TIMM",
+            "target": 329,
             "target_label": "DANIEL LORSCHEITTER BAPTISTA",
             "value": 2,
             "interarea": false,
@@ -21826,17 +21774,8 @@
         },
         {
             "source": 327,
-            "source_label": "MARIANA DE MELLO TIMM",
+            "source_label": "CRISTIANE MARIN",
             "target": 328,
-            "target_label": "CRISTIANE MARIN",
-            "value": 2,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 327,
-            "source_label": "MARIANA DE MELLO TIMM",
-            "target": 329,
             "target_label": "PAULO FERNANDO PAPALEO FICHTNER",
             "value": 2,
             "interarea": false,
@@ -21844,98 +21783,98 @@
         },
         {
             "source": 327,
-            "source_label": "MARIANA DE MELLO TIMM",
-            "target": 330,
-            "target_label": "DANIEL LORSCHEITTER BAPTISTA",
-            "value": 2,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 328,
             "source_label": "CRISTIANE MARIN",
             "target": 329,
-            "target_label": "PAULO FERNANDO PAPALEO FICHTNER",
-            "value": 2,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 328,
-            "source_label": "CRISTIANE MARIN",
-            "target": 330,
             "target_label": "DANIEL LORSCHEITTER BAPTISTA",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 329,
+            "source": 328,
             "source_label": "PAULO FERNANDO PAPALEO FICHTNER",
-            "target": 330,
+            "target": 329,
             "target_label": "DANIEL LORSCHEITTER BAPTISTA",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 333,
+            "source": 332,
             "source_label": "CESAR AUGUSTO MISSIO MARCON",
-            "target": 334,
+            "target": 333,
             "target_label": "THAIS CHRISTINA WEBBER DOS SANTOS",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 335,
+            "source": 334,
             "source_label": "GUILHERME SCHWANKE CARDOSO",
-            "target": 336,
+            "target": 335,
             "target_label": "ALISSON JAMIE CRUZ LANOT",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 337,
+            "source": 336,
             "source_label": "ROBERT BOGDAN STASZEWSKI",
-            "target": 338,
+            "target": 337,
             "target_label": "FENG-WEI KUO",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 337,
+            "source": 336,
             "source_label": "ROBERT BOGDAN STASZEWSKI",
-            "target": 339,
+            "target": 338,
             "target_label": "MASOUD BABAIE",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 338,
+            "source": 337,
             "source_label": "FENG-WEI KUO",
-            "target": 339,
+            "target": 338,
             "target_label": "MASOUD BABAIE",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 340,
+            "source": 339,
             "source_label": "MARTHA JOHANNA SEPULVEDA FLOREZ",
-            "target": 341,
+            "target": 340,
             "target_label": "GEORG SIGL",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 340,
+            "source": 339,
+            "source_label": "MARTHA JOHANNA SEPULVEDA FLOREZ",
+            "target": 341,
+            "target_label": "LILIAN BOSSUE",
+            "value": 2,
+            "interarea": false,
+            "interline": false
+        },
+        {
+            "source": 339,
             "source_label": "MARTHA JOHANNA SEPULVEDA FLOREZ",
             "target": 342,
+            "target_label": "CEZAR RODOLFO WEDIG REINBRECHT",
+            "value": 2,
+            "interarea": false,
+            "interline": false
+        },
+        {
+            "source": 340,
+            "source_label": "GEORG SIGL",
+            "target": 341,
             "target_label": "LILIAN BOSSUE",
             "value": 2,
             "interarea": false,
@@ -21943,44 +21882,26 @@
         },
         {
             "source": 340,
-            "source_label": "MARTHA JOHANNA SEPULVEDA FLOREZ",
-            "target": 343,
-            "target_label": "CEZAR RODOLFO WEDIG REINBRECHT",
-            "value": 2,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 341,
             "source_label": "GEORG SIGL",
             "target": 342,
-            "target_label": "LILIAN BOSSUE",
-            "value": 2,
-            "interarea": false,
-            "interline": false
-        },
-        {
-            "source": 341,
-            "source_label": "GEORG SIGL",
-            "target": 343,
             "target_label": "CEZAR RODOLFO WEDIG REINBRECHT",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 342,
+            "source": 341,
             "source_label": "LILIAN BOSSUE",
-            "target": 343,
+            "target": 342,
             "target_label": "CEZAR RODOLFO WEDIG REINBRECHT",
             "value": 2,
             "interarea": false,
             "interline": false
         },
         {
-            "source": 344,
+            "source": 343,
             "source_label": "DALTON MARTINI COLOMBO",
-            "target": 345,
+            "target": 344,
             "target_label": "ALAN CARLOS JUNIOR ROSSETTO",
             "value": 2,
             "interarea": false,
