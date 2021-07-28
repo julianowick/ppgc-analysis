@@ -1,6 +1,5 @@
 import csv
 import json
-import operator
 import sys
 from unidecode import unidecode
 
@@ -10,17 +9,14 @@ def export_graph(authorsfilename, papersfilename, outputfilename):
         all_areas = []
         all_lines = []
         freader = csv.reader(csvpapers, delimiter=',')
+        header = next(freader)
+        # Relevant data in csvpapers
+        id_prod = header.index('ID_ADD_PRODUCAO_INTELECTUAL')
+        year = header.index('AN_BASE')
+        nm_area = header.index('NM_AREA_CONCENTRACAO')
+        nm_line = header.index('NM_LINHA_PESQUISA')
+        nm_type = header.index('NM_SUBTIPO_PRODUCAO') # journal, conference, etc.
         for row in freader:
-            # Skip headers
-            if row[0] == 'CD_PROGRAMA_IES':
-                # Relevant data in csvpapers
-                id_prod = row.index('ID_ADD_PRODUCAO_INTELECTUAL')
-                year = row.index('AN_BASE')
-                nm_area = row.index('NM_AREA_CONCENTRACAO')
-                nm_line = row.index('NM_LINHA_PESQUISA')
-                nm_type = row.index('NM_SUBTIPO_PRODUCAO') # journal, conference, etc.
-                continue
-
             # Some line names start with LINHA
             if row[nm_line].startswith('LINHA '):
                 line = row[nm_line][6:]
@@ -43,16 +39,14 @@ def export_graph(authorsfilename, papersfilename, outputfilename):
 
         authors = {}
         freader = csv.reader(csvauthors, delimiter=',')
+        header = next(freader)
+        # Relevant data in csvauthors
+        id_prod = header.index('ID_ADD_PRODUCAO_INTELECTUAL')
+        nm_author = header.index('NM_AUTOR') # author's name
+        tp_author = header.index('TP_AUTOR') # professor, student, external
+        nm_country = header.index('NM_PAIS') # origin country
         author_id = 1
         for row in freader:
-            # Skip headers
-            if row[0] == 'AN_BASE':
-                id_prod = row.index('ID_ADD_PRODUCAO_INTELECTUAL')
-                nm_author = row.index('NM_AUTOR') # author's name
-                tp_author = row.index('TP_AUTOR') # professor, student, external
-                nm_country = row.index('NM_PAIS') # origin country
-                continue
-            
             author = unidecode(row[nm_author])
             paper = row[id_prod]
             if author in authors: # existing author
