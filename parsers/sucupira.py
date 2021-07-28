@@ -50,6 +50,7 @@ def export_graph(authorsfilename, papersfilename, outputfilename):
                 id_prod = row.index('ID_ADD_PRODUCAO_INTELECTUAL')
                 nm_author = row.index('NM_AUTOR') # author's name
                 tp_author = row.index('TP_AUTOR') # professor, student, external
+                nm_country = row.index('NM_PAIS') # origin country
                 continue
             
             author = unidecode(row[nm_author])
@@ -82,7 +83,8 @@ def export_graph(authorsfilename, papersfilename, outputfilename):
                     'papers': [paper], 
                     'types': {unidecode(row[tp_author]): papers[paper]['year']}, # year of apearance of this type
                     'areas': {papers[paper]['area']: 1}, # areas counter
-                    'lines': {papers[paper]['line']: 1} # lines counter
+                    'lines': {papers[paper]['line']: 1}, # lines counter
+                    'country': nm_country
                 }
                 author_id += 1
             
@@ -129,7 +131,8 @@ def export_graph(authorsfilename, papersfilename, outputfilename):
                 'areas': node_areas,
                 'line_id': all_lines.index(authors[author]['line']) + 1,
                 'line_name': authors[author]['line'],
-                'lines': node_lines
+                'lines': node_lines,
+                'country': authors[author]['country']
             }
             # Add node with attached information to the nodes list
             nodes.append(node)
