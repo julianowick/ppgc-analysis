@@ -12,6 +12,12 @@ ppgs = [
         "ACRONYM": "CIn"
     },
     {
+        "CD_PROGRAMA_IES": "30001013007P0", 
+        "ENTIDADE_ENSINO": "UFES", 
+        "PROGRAMA": "INFORMÁTICA",
+        "ACRONYM": "PPGI"
+    },
+    {
         "CD_PROGRAMA_IES": "31001017004P3", 
         "ENTIDADE_ENSINO": "UFRJ", 
         "PROGRAMA": "ENGENHARIA DE SISTEMAS E COMPUTAÇÃO",
@@ -42,10 +48,16 @@ ppgs = [
         "ACRONYM": "IC"
     },
     {
-        "CD_PROGRAMA_IES": "42001013004P4", 
+        "CD_PROGRAMA_IES": "42001013004P4",
         "ENTIDADE_ENSINO": "UFRGS", 
         "PROGRAMA": "COMPUTAÇÃO",
         "ACRONYM": "PPGC"
+    },
+    {
+        "CD_PROGRAMA_IES": "42001013075P9",
+        "ENTIDADE_ENSINO": "UFRGS", 
+        "PROGRAMA": "INFORMÁTICA NA EDUCAÇÃO",
+        "ACRONYM": "PPGIE"
     },
     {
         "CD_PROGRAMA_IES": "42001013078P8", 
